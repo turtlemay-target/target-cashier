@@ -119,11 +119,6 @@ export const MainView = (props: {
 		} else {
 			setShowRoundUpResult(false)
 		}
-
-		if (inputElemRef.current === document.activeElement) {
-			if (query === 'wcalc')
-				return void history.push('/wcalc')
-		}
 	}, [
 		query,
 	])
