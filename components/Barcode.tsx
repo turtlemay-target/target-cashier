@@ -43,20 +43,16 @@ function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
 		return
 	}
 
-	let barcodeFormat: string
-	let renderValue: string
 	if (value.match(UPC_REGEX)) {
-		barcodeFormat = 'upc'
-		renderValue = value.padStart(11, '0')
-	} else {
-		barcodeFormat = 'CODE128'
-		renderValue = value
+		try {
+			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+			jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
+			return
+		} catch (err) {
+			console.error(err)
+		}
 	}
 
-	try {
-		const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: barcodeFormat })
-		jsbarcode(elem, renderValue, barcodeOpts)
-	} catch (error) {
-		console.error(error)
-	}
+	const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'CODE128' })
+	jsbarcode(elem, value, barcodeOpts)
 }
