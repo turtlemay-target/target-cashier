@@ -119,6 +119,9 @@ export const MainView = (props: {
 		} else {
 			setShowRoundUpResult(false)
 		}
+
+		if (query === context.defaultQuery)
+			inputElemRef.current?.select()
 	}, [
 		query,
 	])
