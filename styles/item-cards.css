@@ -31,6 +31,7 @@
 
 .itemCards__generatedBarcode {
 	padding: 1em;
+	box-sizing: content-box;
 }
 
 .itemCards__generatedBarcodeText {
