@@ -1,0 +1,19 @@
+{
+  "short_name": "Target",
+  "name": "Target Cashier",
+  "default_locale": "en",
+  "description": "Tools for Target cashiers",
+  "author": "Turtlemay",
+  "background_color": "#000000",
+  "theme_color": "#CC0000",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ]
+}

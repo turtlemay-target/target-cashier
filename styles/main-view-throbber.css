@@ -1,0 +1,37 @@
+.mainView__throbberPositioner {
+	position: relative;
+}
+
+.mainView__throbberBackdrop {
+	pointer-events: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 3;
+	background: rgba(0, 0, 0, 0.96);
+	transition-duration: 200ms;
+	transition-property: opacity;
+}
+
+.mainView__throbberBackdrop:not(.active) {
+	opacity: 0;
+}
+
+.mainView__throbber {
+	--size: 8em;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	margin: 1em;
+	border: 0.5em solid rgba(255, 255, 255, 0.15);
+	border-top-color: white;
+	animation: spin-animation 1s infinite linear;
+	transition-duration: 200ms;
+	transition-property: opacity;
+	opacity: 1;
+}

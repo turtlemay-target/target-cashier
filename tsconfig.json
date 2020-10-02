@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": false,
+		"target": "ES2019",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"jsx": "react",
+		"outDir": "dist",
+		"strictNullChecks": true
+	},
+	"exclude": [
+		"dist"
+	]
+}

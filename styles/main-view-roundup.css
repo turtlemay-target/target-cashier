@@ -1,0 +1,32 @@
+.mainView__roundUpResultPositioner {
+	position: relative;
+}
+
+.mainView__roundUpResult {
+	position: absolute;
+	top: 0;
+	left: 1em;
+	padding: 0.5em 1em;
+	width: auto;
+	height: auto;
+	font: 1.2em monospace;
+	color: white;
+	background: #222;
+	transition-duration: 200ms;
+	transition-property: transform;
+	text-align: center;
+}
+
+.mainView__roundUpResult:not(.active) {
+	transform: translateY(-100%);
+	pointer-events: none;
+}
+
+.mainView__roundUpText {
+	font: 0.5em sans-serif;
+	color: #666;
+}
+
+.mainView__roundUpCentSign {
+	color: #666;
+}

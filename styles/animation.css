@@ -1,0 +1,55 @@
+@keyframes spin-animation {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.appViewTransitionAnimation-enter {
+	opacity: 0;
+	transform: scale(1.05);
+}
+
+.appViewTransitionAnimation-enter-active {
+	opacity: 1;
+	transition-duration: 250ms;
+	transition-property: opacity, transform;
+	transform: none;
+}
+
+.appViewTransitionAnimation-exit {
+	opacity: 1;
+}
+
+.appViewTransitionAnimation-exit-active {
+	opacity: 0;
+	transition-duration: 250ms;
+	transition-property: opacity, transform;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__resultItemTransition-enter {
+	opacity: 0;
+	transform: scale(0.95);
+}
+
+.mainView__resultItemTransition-enter-active {
+	opacity: 1;
+	transform: none;
+	transition-duration: 250ms;
+	transition-property: opacity, transform;
+}
+
+.mainView__resultItemTransition-exit {
+	opacity: 1;
+	transform: none;
+}
+
+.mainView__resultItemTransition-exit-active {
+	opacity: 0;
+	transform: scale(0.95);
+	transition-duration: 250ms;
+	transition-property: opacity, transform;
+}

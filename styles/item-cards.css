@@ -1,0 +1,61 @@
+.itemCards__storeItemCard {
+	padding: 0.5em 1em;
+	background: white;
+	color: black;
+	border-radius: 5%;
+	border-left: 10px solid var(--item-ui-color);
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.itemCards__storeItemName {
+	text-align: center;
+}
+
+.itemCards__storeItemId {
+	text-align: center;
+}
+
+.itemCards__storeItemBarcode {
+	margin: 10px;
+}
+
+.itemCards__generatedBarcodeCard {
+	display: inline-block;
+	background: white;
+	color: black;
+	border-radius: 5%;
+	position: relative;
+}
+
+.itemCards__generatedBarcode {
+	padding: 1em;
+}
+
+.itemCards__generatedBarcodeText {
+	background: #111;
+	color: white;
+	font: 0.8em sans-serif;
+	padding: 0.5em;
+	border: 1px solid #222;
+	text-align: center;
+}
+
+.mainView__queryResultList .itemCards__generatedBarcode,
+.mainView__queryResultList .itemCards__storeItemBarcode {
+	transition-duration: 200ms;
+	transition-property: transform, opacity;
+	cursor: pointer;
+}
+
+.mainView__queryResultList .itemCards__generatedBarcode:active,
+.mainView__queryResultList .itemCards__storeItemBarcode:active {
+	opacity: 0.75;
+	transform: scaleY(0.9);
+}
+
+.shadowbox__root .itemCards__storeItemBarcode,
+.shadowbox__root .itemCards__generatedBarcode {
+	pointer-events: none;
+}

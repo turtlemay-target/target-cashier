@@ -1,0 +1,28 @@
+.mainView__mathResultPositioner {
+	position: relative;
+}
+
+.mainView__mathResult {
+	position: absolute;
+	top: 0;
+	right: 2em;
+	padding: 0.5em 1em;
+	width: auto;
+	height: auto;
+	font: 1.2em monospace;
+	color: white;
+	background: #222;
+	transition-duration: 200ms;
+	transition-property: transform;
+	text-align: center;
+}
+
+.mainView__mathResult:not(.active) {
+	transform: translateY(-100%);
+	pointer-events: none;
+}
+
+.mainView__mathResultEqualSign {
+	color: #666;
+	margin-right: 0.3em;
+}

@@ -1,0 +1,291 @@
+.mainView__root {
+	background: black;
+	color: white;
+	font: 1rem sans-serif;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__mainLayout {
+	display: flex;
+	flex-direction: column;
+}
+
+.mainView__mainLayoutBottom {
+	flex: 1;
+	overflow: hidden;
+}
+
+.mainView__mainLayoutBottom>* {
+	width: 100%;
+	height: 100%;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__mainInputContainer {
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .2);
+	z-index: 1;
+	display: flex;
+	background: white;
+}
+
+.mainView__mainInput {
+	flex: 1;
+	width: 100%;
+	padding: 1em;
+	font: 1em sans-serif;
+	text-align: center;
+	outline: 0;
+	border: 0;
+	transition-duration: 300ms;
+	transition-property: color, background-color;
+	-moz-appearance: textfield;
+}
+
+.mainView__mainInput--numType {
+	background: rgb(223, 234, 255);
+}
+
+.mainView__mainInput:not(:focus) {
+	color: #888;
+}
+
+.mainView__mainInput:focus {
+	color: black;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__queryNumInputToggleButton {
+	display: flex;
+	--size: 3.5em;
+	height: var(--size);
+	width: var(--size);
+	color: #666;
+	overflow: hidden;
+	filter: grayscale(1);
+	transition-duration: 300ms;
+	transition-property: transform, color;
+	cursor: pointer;
+}
+
+.mainView__queryNumInputToggleButton:active {
+	transform: scale(0.75);
+	color: black;
+}
+
+.mainView__queryNumInputToggleButtonText {
+	margin: auto;
+	font: 2.5em monospace;
+	user-select: none;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__queryResetButton {
+	display: flex;
+	--size: 3.5em;
+	height: var(--size);
+	width: var(--size);
+	color: #666;
+	overflow: hidden;
+	transition-duration: .2s;
+	transition-property: transform, color;
+	user-select: none;
+	cursor: pointer;
+}
+
+.mainView__queryResetButton:active {
+	transform: scale(0.8);
+	color: black;
+}
+
+.mainView__queryResetButtonText {
+	margin: auto;
+	font: 2.5em monospace;
+	user-select: none;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__queryResultListViewContainer {
+	position: relative;
+}
+
+.mainView__queryResultListViewContainer>* {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.mainView__queryResultListView {
+	transition-duration: 200ms;
+	transition-property: transform;
+}
+
+.mainView__queryResultListView:not(.active) {
+	pointer-events: none;
+}
+
+.mainView__queryResultListView.hideToLeft {
+	transform: translateX(-100%) scale(0.2);
+}
+
+.mainView__queryResultListView.hideToRight {
+	transform: translateX(+100%) scale(0.2);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__viewNavContainerPositionRoot {
+	position: relative;
+}
+
+.mainView__viewNavContainer {
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.mainView__viewNavContainer>* {
+	flex: 1;
+}
+
+.mainView__viewNavButtonLeftContainer,
+.mainView__viewNavButtonRightContainer {
+	display: flex;
+}
+
+.mainView__viewNavButtonLeft,
+.mainView__viewNavButtonRight {
+	--size: 5rem;
+	width: var(--size);
+	height: var(--size);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(30, 30, 30, 0.9);
+	color: #666;
+	border-radius: 50%;
+	font: 4rem monospace;
+	transition-duration: 200ms;
+	transition-property: opacity, transform;
+	pointer-events: all;
+	cursor: pointer;
+	user-select: none;
+}
+
+.mainView__viewNavButtonLeft {
+	margin: auto auto auto 0;
+}
+
+.mainView__viewNavButtonRight {
+	margin: auto 0 auto auto;
+}
+
+.mainView__viewNavButtonLeft:not(.active),
+.mainView__viewNavButtonRight:not(.active) {
+	pointer-events: none;
+	opacity: 0;
+}
+
+.mainView__viewNavButtonLeft:not(.active) {
+	transform: translate(+100vw);
+}
+
+.mainView__viewNavButtonRight:not(.active) {
+	transform: translate(-100vw);
+}
+
+.mainView__viewNavButtonLeft:active,
+.mainView__viewNavButtonRight:active {
+	transform: scale(0.8);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__queryResultList {
+	padding: 4em 0.5em 0;
+	overflow-y: scroll;
+}
+
+.mainView__queryResultList::after {
+	content: '0';
+	display: block;
+	padding-bottom: 4em;
+	visibility: hidden;
+}
+
+.mainView__queryResultNode {
+	text-align: center;
+	width: 100%;
+}
+
+.mainView__queryResultNode:not(:last-of-type)::after {
+	content: '';
+	display: block;
+	width: 1px;
+	height: 8em;
+	border-left: 2px dashed #222;
+	margin: 0 auto;
+}
+
+.mainView__queryResultNone {
+	width: 100%;
+	text-align: center;
+	font: 1em sans-serif;
+	font-style: italic;
+	color: #333;
+	padding: 0.5em;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__showMoreButton {
+	--size: 5rem;
+	width: var(--size);
+	height: var(--size);
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(30, 30, 30, 0.9);
+	color: #666;
+	font: 3rem monospace;
+	border-radius: 50%;
+	transition-duration: 200ms;
+	transition-property: filter, transform;
+	user-select: none;
+	cursor: pointer;
+}
+
+.mainView__showMoreButton:hover {
+	filter: contrast(0.8);
+}
+
+.mainView__showMoreButton:active {
+	transform: scale(0.9);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.mainView__shadowboxPositionRoot {
+	position: relative;
+}
+
+.mainView__shadowbox {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 2;
+}

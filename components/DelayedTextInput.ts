@@ -1,0 +1,54 @@
+import * as React from 'react'
+import c from 'classnames'
+
+export function DelayedTextInput(props: {
+	className?: string
+	activeClassName?: string
+	textarea?: boolean
+	type?: string
+	disabled?: boolean
+	placeholder?: string
+	elemRef?: React.MutableRefObject<HTMLElement | undefined>
+	children?: React.ReactNode
+	initialValue: string
+	commitDelay: number
+	onStartInput?: VoidFunction
+	onStopInput?: VoidFunction
+	onCommit: (v: string) => void
+	passProps?: Object
+}) {
+	const [value, setValue] = React.useState(props.initialValue)
+	const [commitTimeout, setCommitTimeout] = React.useState<any>(null)
+	const [active, setActive] = React.useState(false)
+
+	React.useEffect(function init() {
+		return function cleanup() {
+			clearTimeout(commitTimeout)
+		}
+	})
+
+	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+		props.onStartInput?.()
+		setActive(true)
+		const newValue = e.target.value
+		setValue(newValue)
+		clearTimeout(commitTimeout)
+		setCommitTimeout(setTimeout(() => {
+			setActive(false)
+			props.onCommit(newValue)
+			props.onStopInput?.()
+		}, props.commitDelay))
+	}
+
+	return React.createElement(props.textarea ? 'textarea' : 'input', {
+		className: c(props.className, { [props.activeClassName ?? '']: active }),
+		type: props.type ?? 'text',
+		disabled: props.disabled,
+		value: active ? value : props.initialValue,
+		placeholder: props.placeholder,
+		onChange: handleChange,
+		children: props.children,
+		ref: props.elemRef,
+		...props.passProps ?? {},
+	})
+}

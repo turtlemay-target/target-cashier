@@ -1,0 +1,54 @@
+.infoView__root {
+	background: black;
+	color: white;
+	font: 1rem sans-serif;
+	overflow-y: scroll;
+	padding: 2em 1em;
+}
+
+.infoView__mainContainer {
+	max-width: 40em;
+	margin: 0 auto;
+}
+
+.infoView__root section {
+	margin: 0 0 2em;
+	padding: 0 0 0 1em;
+	border-left: 0.5em solid #252525;
+}
+
+.infoView__root ul {
+	margin: 0;
+	padding: 0 0 0 1em;
+}
+
+.infoView__root li {
+	list-style-type: circle;
+}
+
+.infoView__root li:not(:last-of-type) {
+	margin: 0 0 0.5em;
+}
+
+.infoView__root h2 {
+	font-size: inherit;
+}
+
+.infoView__root p {
+	color: #bbb;
+}
+
+.infoView__root a {
+	border-bottom: 2px solid #333;
+	color: white;
+	transition-duration: 200ms;
+	transition-property: opacity;
+}
+
+.infoView__root a:hover {
+	opacity: 0.8;
+}
+
+.infoView__root a:active {
+	opacity: 0.5;
+}

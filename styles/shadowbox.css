@@ -1,0 +1,62 @@
+.shadowbox__root {
+	background: rgba(0, 0, 0, 0.95);
+	color: white;
+	display: flex;
+	flex-direction: column;
+	transition-duration: 300ms;
+	transition-property: transform, opacity;
+}
+
+.shadowbox__root:not(.shadowbox__root--active) {
+	opacity: 0;
+	transform: scale(0.9) rotate(2deg);
+	pointer-events: none;
+}
+
+.shadowbox__topbar {
+	background: #222;
+	height: auto;
+	width: 100%;
+	display: flex;
+}
+
+.shadowbox__topbarlayoutleft {
+	flex: 1;
+}
+
+.shadowbox__closebutton {
+	--size: 4rem;
+	width: var(--size);
+	height: var(--size);
+	font: 4rem monospace;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #333;
+	color: #888;
+	transition-duration: 200ms;
+	transition-property: filter, transform;
+	cursor: pointer;
+	user-select: none;
+}
+
+.shadowbox__closebutton:active {
+	transform: scale(0.9);
+	filter: contrast(1.2);
+}
+
+.shadowbox__layoutbottom {
+	flex: 1;
+	display: flex;
+	overflow-y: scroll;
+	padding: 2em;
+}
+
+.shadowbox__itemcontainer {
+	margin: auto;
+}
+
+.shadowbox__noitem {
+	font: italic 1em sans-serif;
+	color: #999;
+}

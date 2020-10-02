@@ -1,0 +1,70 @@
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	<title>Target Cashier</title>
+	<style>
+		html {
+			box-sizing: border-box;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
+
+		body {
+			background: black;
+			color: white;
+			margin: 0;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: inherit;
+		}
+
+		input[type='number'] {
+			-moz-appearance: textfield;
+		}
+
+		input[type='number']::-webkit-outer-spin-button,
+		input[type='number']::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		#preloadroot {
+			display: flex;
+			font: 1em sans-serif;
+			color: white;
+			width: 100%;
+			height: 100%;
+		}
+
+		#preloadroot .loadingtext {
+			margin: auto;
+		}
+
+		#reactroot {
+			width: 100%;
+			height: 100%;
+			transition-duration: 200ms;
+			transition-property: opacity;
+		}
+
+		#reactroot:not(.reactstarted) {
+			display: none;
+			opacity: 0;
+			pointer-events: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="preloadroot">
+		<div class="loadingtext">
+			Loading…
+		</div>
+	</div>
+	<div id="reactroot"></div>
+</body>

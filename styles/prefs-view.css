@@ -1,0 +1,149 @@
+.prefsView__root {
+	background: black;
+	color: white;
+	font: 1rem sans-serif;
+	overflow-y: scroll;
+	padding: 2em 1em;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.prefsView__throbber {
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	--size: 1.5em;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	margin: 1em;
+	border: 0.2em solid rgba(255, 255, 255, 0.15);
+	border-top: 0.2em solid white;
+	animation: spin-animation 1s infinite linear;
+	transition-duration: 200ms;
+	transition-property: opacity;
+	opacity: 1;
+}
+
+.prefsView__throbber:not(.active) {
+	opacity: 0;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.prefsView__optionsList {
+	max-width: 25em;
+	margin: 0 auto;
+}
+
+.prefsView__optionsListItem:not(:last-child) {
+	padding: 0 0 1em;
+}
+
+.prefsView__optionsList section {
+	padding: 2em 0;
+	border-bottom: 1px solid #151515;
+}
+
+.prefsView__optionsListSectionInfo {
+	padding: 0 0 1em;
+	text-align: center;
+}
+
+.prefsView__optionsListSectionInfo h2 {
+	font: 1em sans-serif bold;
+	color: #c0c0c0;
+	margin: 0 0 0.25em;
+}
+
+.prefsView__optionsListSectionInfo p {
+	margin: 0 0 1em;
+	font: .75em sans-serif;
+	color: #444;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.prefsView__optionsLayout {
+	display: flex;
+}
+
+.prefsView__optionsLayoutLeft,
+.prefsView__optionsLayoutRight {
+	flex: 1;
+}
+
+.prefsView__optionsLayoutLeft {
+	margin-right: 1em;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.prefsView__optionLabel {
+	font: 1em sans-serif;
+	color: white;
+	filter: grayscale(1);
+}
+
+.prefsView__optionLabel:not(:last-child) {
+	margin: 0 0 0.25em;
+}
+
+.prefsView__optionDescription {
+	font: .75em sans-serif;
+	color: #999;
+	margin: 0 0 2em;
+}
+
+.prefsView__optionDescription p {
+	margin-top: 0;
+}
+
+.prefsView__optionStateInfo {
+	font: .75em sans-serif;
+	color: #444;
+	margin: 0.5em 0;
+}
+
+.prefsView__optionTextInput {
+	font: inherit;
+	width: 100%;
+}
+
+textarea.prefsView__optionTextInput {
+	min-height: 8em;
+}
+
+.prefsView__optionCheckbox {
+	--size: 2em;
+	width: var(--size);
+	height: var(--size);
+	font: inherit;
+	margin: 0;
+	filter: grayscale(1);
+	transition-duration: 100ms;
+	transition-property: transform;
+}
+
+.prefsView__optionCheckbox:active {
+	transform: scale(0.8);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.prefsView__resetButtonContainer {
+	padding: 2em;
+	text-align: center;
+}
+
+.prefsView__resetButton {
+	font: inherit;
+	transition-duration: 100ms;
+	transition-property: transform;
+}
+
+.prefsView__resetButton:active {
+	font: inherit;
+	transform: scale(0.95);
+}
