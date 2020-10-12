@@ -19,7 +19,7 @@ export const InfoView = () => (
 			<section>
 				<h2>📅 Recent Changes</h2>
 				<ul>
-					<li>Initial build.</li>
+					<li>Initial build (Oct 2020).</li>
 				</ul>
 			</section>
 			<section>
