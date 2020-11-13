@@ -33,11 +33,21 @@ export const MainView = (props: {
 	const [onResetQueryDelegate] = React.useState(new Set<VoidFunction>())
 	const inputElemRef = React.useRef<HTMLInputElement>()
 
-	React.useEffect(function init() {
-		inputElemRef.current?.select()
-	}, [])
+	React.useEffect(selectInputOnInit, [])
 
-	React.useEffect(function initKeyListener() {
+	React.useEffect(initKeyListener)
+
+	React.useEffect(updateQueryParams)
+	
+	React.useEffect(onChangedQuery, [query])
+	React.useEffect(onChangeSplitQueries, [splitQueries])
+	React.useEffect(onChangedActiveView, [props.active])
+
+	function selectInputOnInit() {
+		inputElemRef.current?.select()
+	}
+
+	function initKeyListener() {
 		addEventListener('keydown', handleKeyDown)
 
 		return function cleanup() {
@@ -84,23 +94,19 @@ export const MainView = (props: {
 					focusInputField()
 			}
 		}
-	})
+	}
 
-	React.useEffect(function onChangeSplitQueries() {
-		setActiveQueryIndex(0)
-	}, [splitQueries])
-
-	React.useEffect(function updateQueryParams() {
+	function updateQueryParams() {
 		const queryParams = new URLSearchParams(location.search)
 		setShowShadowbox(queryParams.has('sb'))
-	})
+	}
 
-	React.useEffect(function onChangedActiveView() {
+	function onChangedActiveView() {
 		if (props.active)
 			inputElemRef.current?.select()
-	}, [props.active])
+	}
 
-	React.useEffect(function onChangedQuery() {
+	function onChangedQuery() {
 		if (query.length === 0)
 			return
 
@@ -130,7 +136,11 @@ export const MainView = (props: {
 
 		if (query === context.defaultQuery)
 			inputElemRef.current?.select()
-	}, [query])
+	}
+
+	function onChangeSplitQueries() {
+		setActiveQueryIndex(0)
+	}
 
 	function resetQuery() {
 		onResetQueryDelegate.forEach(fn => fn?.())
@@ -299,17 +309,9 @@ function QueryResults(props: {
 	const prevQuery = usePrevious(props.query)
 	const scrollUpElemRef = React.useRef<HTMLDivElement>()
 
-	React.useEffect(function initResetQueryCallback() {
-		props.onResetQueryDelegate.add(onResetQuery)
-		return function cleanup() {
-			props.onResetQueryDelegate.delete(onResetQuery)
-		}
-		function onResetQuery() {
-			resetScroll({ smooth: props.query === context.defaultQuery })
-		}
-	}, [])
+	React.useEffect(initResetQueryCallback, [])
 
-	React.useEffect(processQuery, [
+	React.useEffect(updateQuery, [
 		props.query,
 		context.dbInfo?.version,
 		context.dbUrl,
@@ -317,7 +319,17 @@ function QueryResults(props: {
 		context.tokenizeSearch,
 	])
 
-	function processQuery() {
+	function initResetQueryCallback() {
+		props.onResetQueryDelegate.add(onResetQuery)
+		return function cleanup() {
+			props.onResetQueryDelegate.delete(onResetQuery)
+		}
+		function onResetQuery() {
+			resetScroll({ smooth: props.query === context.defaultQuery })
+		}
+	}
+
+	function updateQuery() {
 		if (props.query.length === 0)
 			return
 
