@@ -22,12 +22,17 @@ export function DelayedTextInput(props: {
 	const [active, setActive] = React.useState(false)
 
 	React.useEffect(updateClearTimeout)
+	React.useEffect(onChangeCommitedValue, [props.committedValue])
 
 	function updateClearTimeout() {
 		return () => {
 			if (commitTimeout !== null)
 				window.clearTimeout(commitTimeout)
 		}
+	}
+
+	function onChangeCommitedValue() {
+		setValue(props.committedValue)
 	}
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -48,7 +53,7 @@ export function DelayedTextInput(props: {
 		className: c(props.className, { [props.activeClassName ?? '']: active }),
 		type: props.type ?? 'text',
 		disabled: props.disabled,
-		value: active ? value : props.committedValue,
+		value: value,
 		placeholder: props.placeholder,
 		onChange: handleChange,
 		children: props.children,
