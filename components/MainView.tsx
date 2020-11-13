@@ -67,10 +67,12 @@ export const MainView = (props: {
 				focusInputField()
 				clearInputField()
 			}
+
 			if (inputElemRef && inputElemRef.current !== document.activeElement) {
 				if (!e.ctrlKey && !e.metaKey && !e.altKey && String.fromCharCode(e.keyCode).match(/(\w|\s)/g))
 					focusInputField()
 			}
+
 			if ([e.key, e.code].includes(context.resetQueryKey)) {
 				e.preventDefault()
 				resetQuery()
