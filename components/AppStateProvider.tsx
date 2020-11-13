@@ -14,8 +14,8 @@ const DEFAULT_PREFS = {
 	tokenizeSearch: false,
 	resetQueryKey: '`',
 	appNavBackKey: 'Escape',
-	appNavViewLeftKey: 'ArrowLeft',
-	appNavViewRightKey: 'ArrowRight',
+	appNavViewLeftKey: '[',
+	appNavViewRightKey: ']',
 	querySeparator: ';',
 }
 
