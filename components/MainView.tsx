@@ -320,20 +320,18 @@ function QueryResults(props: {
 
 		setNumRenderResultItems(context.itemsPerPage)
 
-		const tagMatch = props.query.match(/tag:(\S*)/)
-		if (tagMatch) {
+		const matchedTagName = props.query.match(/tag:(\S*)/)?.[1]
+		if (matchedTagName) {
 			setEnablePaging(false)
-			const tagName = tagMatch[1]
-			setSearchResults(context.compiledItemData.filter(v => v.tags?.includes(tagName)))
+			setSearchResults(context.compiledItemData.filter(v => v.tags?.includes(matchedTagName)))
 		} else {
 			setEnablePaging(true)
 			setSearchResults(context.search(props.query))
 		}
 
-		const barcodeMatch = props.query.match(/\d{4,24}/)
-		const barcodeValue = barcodeMatch ? barcodeMatch[0] : null
-		if (barcodeValue) {
-			setTypedCode(barcodeValue)
+		const matchedBarcodeValue = props.query.match(/\d{4,24}/)?.[0] || null
+		if (matchedBarcodeValue) {
+			setTypedCode(matchedBarcodeValue)
 			setShowTypedCode(true)
 		} else {
 			setShowTypedCode(false)
