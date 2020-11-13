@@ -21,11 +21,11 @@ export function DelayedTextInput(props: {
 	const [commitTimeout, setCommitTimeout] = React.useState<any>(null)
 	const [active, setActive] = React.useState(false)
 
-	React.useEffect(function update() {
-		return function cleanup() {
-			clearTimeout(commitTimeout)
-		}
-	})
+	React.useEffect(update)
+
+	function update() {
+		return () => clearTimeout(commitTimeout)
+	}
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		props.onStartInput?.()
