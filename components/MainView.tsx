@@ -33,18 +33,18 @@ export const MainView = (props: {
 	const [onResetQueryDelegate] = React.useState(new Set<VoidFunction>())
 	const inputElemRef = React.useRef<HTMLInputElement>()
 
-	React.useEffect(selectInputOnInit, [])
-	React.useEffect(initKeyListener)
+	React.useEffect(initSelectInput, [])
+	React.useEffect(updateKeyListener)
 	React.useEffect(updateQueryParams)
 	React.useEffect(onChangedQuery, [query])
 	React.useEffect(onChangeSplitQueries, [splitQueries])
 	React.useEffect(onChangedActiveView, [props.active])
 
-	function selectInputOnInit() {
+	function initSelectInput() {
 		inputElemRef.current?.select()
 	}
 
-	function initKeyListener() {
+	function updateKeyListener() {
 		addEventListener('keydown', handleKeyDown)
 
 		return function cleanup() {
