@@ -245,7 +245,7 @@ export const MainView = (props: {
 
 				<div className="mainView__queryResultListViewContainer">
 					{splitQueries.map((q, i) => (
-						<QueryResults key={i} query={q}
+						<MainViewQueryResults key={i} query={q}
 							className={c('mainView__queryResultListView', {
 								'active': i === activeQueryIndex,
 								'hideToLeft': i < activeQueryIndex,
@@ -291,7 +291,7 @@ export const MainView = (props: {
 	)
 }
 
-function QueryResults(props: {
+function MainViewQueryResults(props: {
 	className?: string
 	query: string
 	onPickShadowBoxElem: (jsx: JSX.Element) => void
