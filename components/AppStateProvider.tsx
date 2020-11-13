@@ -32,7 +32,7 @@ type IState = IPrefs & {
 }
 
 // @ts-ignore
-export const AppStateContext = React.createContext<IState>(null)
+export const AppStateContext = React.createContext<IState>(undefined)
 
 export class AppStateProvider extends React.Component<{}, IState> {
 	_fuse: { search: Function }
