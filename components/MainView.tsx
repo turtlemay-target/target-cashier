@@ -35,7 +35,7 @@ export const MainView = (props: {
 	React.useEffect(updateKeyListener)
 	React.useEffect(updateQueryParams)
 	React.useEffect(onChangedQuery, [query])
-	React.useEffect(onChangeSplitQueries, [splitQueries])
+	React.useEffect(onChangedSplitQueries, [splitQueries])
 	React.useEffect(onChangedActiveView, [props.active])
 
 	function initSelectInput() {
@@ -133,7 +133,7 @@ export const MainView = (props: {
 			inputElemRef.current?.select()
 	}
 
-	function onChangeSplitQueries() {
+	function onChangedSplitQueries() {
 		setActiveQueryIndex(0)
 	}
 
