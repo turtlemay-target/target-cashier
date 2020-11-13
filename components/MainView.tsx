@@ -220,7 +220,7 @@ export const MainView = (props: {
 					type={useNumInput ? 'number' : 'text'}
 					elemRef={inputElemRef}
 					placeholder={useNumInput ? "Enter UPC or PLU code" : "Enter query"}
-					initialValue={query}
+					committedValue={query}
 					onStartInput={() => setThrobber(true)}
 					onStopInput={() => setThrobber(false)}
 					onCommit={v => { if (v.length > 0) setQuery(v) }}

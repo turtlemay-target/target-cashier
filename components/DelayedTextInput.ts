@@ -10,14 +10,14 @@ export function DelayedTextInput(props: {
 	placeholder?: string
 	elemRef?: React.MutableRefObject<HTMLElement | undefined>
 	children?: React.ReactNode
-	initialValue: string
+	committedValue: string
 	commitDelay: number
 	onStartInput?: VoidFunction
 	onStopInput?: VoidFunction
 	onCommit: (v: string) => void
 	passProps?: Object
 }) {
-	const [value, setValue] = React.useState(props.initialValue)
+	const [value, setValue] = React.useState(props.committedValue)
 	const [commitTimeout, setCommitTimeout] = React.useState<any>(null)
 	const [active, setActive] = React.useState(false)
 
@@ -44,7 +44,7 @@ export function DelayedTextInput(props: {
 		className: c(props.className, { [props.activeClassName ?? '']: active }),
 		type: props.type ?? 'text',
 		disabled: props.disabled,
-		value: active ? value : props.initialValue,
+		value: active ? value : props.committedValue,
 		placeholder: props.placeholder,
 		onChange: handleChange,
 		children: props.children,

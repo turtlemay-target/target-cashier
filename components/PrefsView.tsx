@@ -22,7 +22,7 @@ export function PrefsView() {
 						label: "🔗 Database URL", description: "Must match our JSON schema and serve over HTTPS. Defaults to Turtlemay's store database.",
 						controlNode: <DelayedTextInput
 							className="prefsView__optionTextInput"
-							initialValue={context.dbUrl}
+							committedValue={context.dbUrl}
 							commitDelay={500}
 							onCommit={v => context.provider.setState({ dbUrl: v })}
 							onStartInput={() => setThrobber(true)}
@@ -45,7 +45,7 @@ export function PrefsView() {
 						</>,
 						controlNode: <DelayedTextInput textarea
 							className="prefsView__optionTextInput"
-							initialValue={context.userItems}
+							committedValue={context.userItems}
 							placeholder={"Example item: 1234\nExample item: 5678"}
 							onStartInput={() => setThrobber(true)}
 							onStopInput={() => setThrobber(false)}
