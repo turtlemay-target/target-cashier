@@ -33,7 +33,9 @@ export const MainView = (props: {
 	const [onResetQueryDelegate] = React.useState(new Set<VoidFunction>())
 	const inputElemRef = React.useRef<HTMLInputElement>()
 
-	React.useEffect(() => inputElemRef.current?.select(), [])
+	React.useEffect(function init() {
+		inputElemRef.current?.select()
+	}, [])
 
 	React.useEffect(function initKeyListener() {
 		addEventListener('keydown', handleKeyDown)
@@ -80,9 +82,11 @@ export const MainView = (props: {
 		}
 	})
 
-	React.useEffect(() => setActiveQueryIndex(0), [splitQueries])
+	React.useEffect(function onChangeSplitQueries() {
+		setActiveQueryIndex(0)
+	}, [splitQueries])
 
-	React.useEffect(() => {
+	React.useEffect(function updateQueryParams() {
 		const queryParams = new URLSearchParams(location.search)
 		setShowShadowbox(queryParams.has('sb'))
 	})
