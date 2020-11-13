@@ -130,9 +130,7 @@ export const MainView = (props: {
 
 		if (query === context.defaultQuery)
 			inputElemRef.current?.select()
-	}, [
-		query,
-	])
+	}, [query])
 
 	function resetQuery() {
 		onResetQueryDelegate.forEach(fn => fn?.())
