@@ -94,9 +94,7 @@ export const MainView = (props: {
 	React.useEffect(function onChangedActiveView() {
 		if (props.active)
 			inputElemRef.current?.select()
-	}, [
-		props.active,
-	])
+	}, [props.active])
 
 	React.useEffect(function onChangedQuery() {
 		if (query.length === 0)
