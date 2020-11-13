@@ -21,9 +21,9 @@ export function DelayedTextInput(props: {
 	const [commitTimeout, setCommitTimeout] = React.useState<number | null>(null)
 	const [active, setActive] = React.useState(false)
 
-	React.useEffect(update)
+	React.useEffect(updateClearTimeout)
 
-	function update() {
+	function updateClearTimeout() {
 		return () => {
 			if (commitTimeout !== null)
 				window.clearTimeout(commitTimeout)
