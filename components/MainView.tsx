@@ -34,11 +34,8 @@ export const MainView = (props: {
 	const inputElemRef = React.useRef<HTMLInputElement>()
 
 	React.useEffect(selectInputOnInit, [])
-
 	React.useEffect(initKeyListener)
-
 	React.useEffect(updateQueryParams)
-	
 	React.useEffect(onChangedQuery, [query])
 	React.useEffect(onChangeSplitQueries, [splitQueries])
 	React.useEffect(onChangedActiveView, [props.active])
