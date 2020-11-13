@@ -139,7 +139,6 @@ export const MainView = (props: {
 
 	function resetQuery() {
 		onResetQueryDelegate.forEach(fn => fn?.())
-		inputElemRef.current?.select()
 		setActiveQueryIndex(0)
 		setQuery(context.defaultQuery)
 		setUseNumInput(false)
@@ -148,6 +147,7 @@ export const MainView = (props: {
 			queryParams.delete('sb')
 			history.push(`?${queryParams.toString()}`)
 		}
+		inputElemRef.current?.select()
 	}
 
 	function splitQuery(str: string): string[] {
