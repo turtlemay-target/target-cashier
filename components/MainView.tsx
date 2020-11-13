@@ -51,6 +51,19 @@ export const MainView = (props: {
 			if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey)
 				return
 
+			if (e.key === 'Enter') {
+				e.preventDefault()
+				focusInputField()
+				clearInputField()
+				return
+			}
+
+			if ([e.key, e.code].includes(context.resetQueryKey)) {
+				e.preventDefault()
+				resetQuery()
+				return
+			}
+
 			if (!showShadowbox) {
 				if (splitQueries.length > 1) {
 					if ([e.key, e.code].includes(context.appNavViewLeftKey)) {
@@ -66,22 +79,9 @@ export const MainView = (props: {
 				}
 			}
 
-			if (e.key === 'Enter') {
-				e.preventDefault()
-				focusInputField()
-				clearInputField()
-				return
-			}
-
 			if (inputElemRef && inputElemRef.current !== document.activeElement) {
 				if (!e.ctrlKey && !e.metaKey && !e.altKey && String.fromCharCode(e.keyCode).match(/(\w|\s)/g))
 					focusInputField()
-			}
-
-			if ([e.key, e.code].includes(context.resetQueryKey)) {
-				e.preventDefault()
-				resetQuery()
-				return
 			}
 		}
 	})
