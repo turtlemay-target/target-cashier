@@ -56,10 +56,12 @@ export const MainView = (props: {
 					if ([e.key, e.code].includes(context.appNavViewLeftKey)) {
 						e.preventDefault()
 						setActiveQueryLeft()
+						return
 					}
 					if ([e.key, e.code].includes(context.appNavViewRightKey)) {
 						e.preventDefault()
 						setActiveQueryRight()
+						return
 					}
 				}
 			}
@@ -68,6 +70,7 @@ export const MainView = (props: {
 				e.preventDefault()
 				focusInputField()
 				clearInputField()
+				return
 			}
 
 			if (inputElemRef && inputElemRef.current !== document.activeElement) {
@@ -78,6 +81,7 @@ export const MainView = (props: {
 			if ([e.key, e.code].includes(context.resetQueryKey)) {
 				e.preventDefault()
 				resetQuery()
+				return
 			}
 		}
 	})
