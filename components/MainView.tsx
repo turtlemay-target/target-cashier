@@ -219,7 +219,7 @@ export const MainView = (props: {
 				<DelayedTextInput className={c('mainView__mainInput', { 'mainView__mainInput--numType': useNumInput })}
 					type={useNumInput ? 'number' : 'text'}
 					elemRef={inputElemRef}
-					placeholder={useNumInput ? "Enter UPC or PLU code" : "Enter query"}
+					placeholder={useNumInput ? "Enter UPC, PLU, or DPCI" : "Enter query"}
 					committedValue={query}
 					onStartInput={() => setThrobber(true)}
 					onStopInput={() => setThrobber(false)}
