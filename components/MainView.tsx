@@ -191,7 +191,6 @@ export const MainView = (props: {
 
 	function onClickResetButton() {
 		resetQuery()
-		setUseNumInput(false)
 	}
 
 	function onPickShadowBoxElem(jsx: JSX.Element) {
