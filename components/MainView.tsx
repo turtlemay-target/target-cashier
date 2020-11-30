@@ -128,13 +128,13 @@ export const MainView = (props: {
 		} else {
 			setShowRoundUpResult(false)
 		}
-
-		if (query === context.defaultQuery)
-			inputElemRef.current?.select()
 	}
 
 	function onChangedSplitQueries() {
 		setActiveQueryIndex(0)
+		
+		if (query === context.defaultQuery)
+			inputElemRef.current?.select()
 	}
 
 	function resetQuery() {
