@@ -66,7 +66,6 @@ module.exports = {
 			favicon: './resources/icon.png',
 			inject: 'head',
 			scriptLoading: 'defer',
-			hash: true,
 		}),
 		new ServiceWorkerWebpackPlugin({
 			entry: `${__dirname}/src/sw.js`,
