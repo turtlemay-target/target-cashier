@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as packageJson from '../package.json'
+import packageJson from '../package.json'
 import { Link } from 'react-router-dom'
 
 export const InfoView = () => (

@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
 		"checkJs": false,
 		"target": "ES2019",
 		"module": "esnext",
