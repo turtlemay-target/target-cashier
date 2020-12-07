@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet'
 // @ts-ignore
 import manifest from '../resources/manifest.webmanifest'
 
+import swruntime from 'serviceworker-webpack-plugin/lib/runtime'
+
 import 'style-loader!../styles/colors.css'
 import 'style-loader!../styles/animation.css'
 import 'style-loader!../styles/app.css'
@@ -35,6 +37,8 @@ render(jsx, reactroot, () => {
 	if (preloadroot)
 		document.body.removeChild(preloadroot)
 })
+
+const sw = swruntime.register()
 
 if (module['hot']) {
 	module['hot'].accept()
