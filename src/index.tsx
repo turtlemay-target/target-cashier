@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { App } from '../components/App'
 import { Helmet } from 'react-helmet'
 
-// @ts-ignore
+// @ts-expect-error
 import manifest from '../resources/manifest.webmanifest'
 
 import swruntime from 'serviceworker-webpack-plugin/lib/runtime'

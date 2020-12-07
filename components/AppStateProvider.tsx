@@ -31,7 +31,7 @@ type IState = IPrefs & {
 	search: Function,
 }
 
-// @ts-ignore
+// @ts-expect-error
 export const AppStateContext = React.createContext<IState>(undefined)
 
 export class AppStateProvider extends React.Component<{}, IState> {
