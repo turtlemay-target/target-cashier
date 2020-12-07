@@ -94,7 +94,7 @@ export function PrefsView() {
 					</div>
 
 					<PrefsOption>{{
-						label: "Reset query key",
+						label: "↶ Reset query key",
 						controlNode: <input type="text"
 							className="prefsView__optionTextInput"
 							value={context.resetQueryKey}
@@ -102,7 +102,7 @@ export function PrefsView() {
 					}}</PrefsOption>
 
 					<PrefsOption>{{
-						label: "Nav left key",
+						label: "◀️ Nav left key",
 						controlNode: <input type="text"
 							className="prefsView__optionTextInput"
 							value={context.appNavViewLeftKey}
@@ -110,7 +110,7 @@ export function PrefsView() {
 					}}</PrefsOption>
 
 					<PrefsOption>{{
-						label: "Nav right key",
+						label: "▶️ Nav right key",
 						controlNode: <input type="text"
 							className="prefsView__optionTextInput"
 							value={context.appNavViewRightKey}
