@@ -71,6 +71,14 @@ export function PrefsView() {
 
 				<section>
 					<PrefsOption>{{
+						label: "Query separator",
+						controlNode: <input type="text"
+							className="prefsView__optionTextInput"
+							value={context.querySeparator}
+							onChange={e => context.provider.setState({ querySeparator: e.target.value })} />,
+					}}</PrefsOption>
+
+					<PrefsOption>{{
 						label: "Default query",
 						controlNode: <input type="text"
 							className="prefsView__optionTextInput"
