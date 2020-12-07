@@ -118,6 +118,14 @@ export function PrefsView() {
 							value={context.appNavViewRightKey}
 							onChange={e => context.provider.setState({ appNavViewRightKey: e.target.value })} />,
 					}}</PrefsOption>
+
+					<PrefsOption>{{
+						label: "❎ Nav back key",
+						controlNode: <input type="text"
+							className="prefsView__optionTextInput"
+							value={context.appNavBackKey}
+							onChange={e => context.provider.setState({ appNavBackKey: e.target.value })} />,
+					}}</PrefsOption>
 				</section>
 
 				<section>

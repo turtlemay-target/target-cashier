@@ -19,7 +19,7 @@ export const InfoView = () => (
 			<section>
 				<h2>📅 Recent Changes</h2>
 				<ul>
-					<li>Added query separator user setting.</li>
+					<li>Added user settings.</li>
 					<li>Support for QR codes.</li>
 					<li>Initial build (Oct 2020).</li>
 				</ul>
