@@ -72,6 +72,7 @@ export function PrefsView() {
 				<section>
 					<PrefsOption>{{
 						label: "Query separator",
+						description: "Use this to chain multiple queries together.",
 						controlNode: <input type="text"
 							className="prefsView__optionTextInput"
 							value={context.querySeparator}
@@ -80,6 +81,7 @@ export function PrefsView() {
 
 					<PrefsOption>{{
 						label: "Default query",
+						description: "Press reset button to return to this query.",
 						controlNode: <input type="text"
 							className="prefsView__optionTextInput"
 							value={context.defaultQuery}
