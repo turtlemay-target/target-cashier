@@ -25,6 +25,14 @@ export const InfoView = () => (
 				</ul>
 			</section>
 			<section>
+				<h2>🧰 Other Tools</h2>
+				<ul>
+				
+					<li><a href="https://github.com/turtlemay-target/turtlemay-target">Target browser extension</a></li>
+					<li><a href="https://github.com/turtlemay-target/T1058-Cheatsheet">T1058 checklane cheat sheet</a></li>
+				</ul>
+			</section>
+			<section>
 				<p><span>Software version <strong>{packageJson.version}</strong>.</span></p>
 				<p>We use the latest browser APIs so ensure your OS, browser and/or WebView is up to date. An Android device with peripheral keyboard is recommended.</p>
 				<p>Created and maintained by <a target="_blank" href="http://turtlemay.us">Turtlemay</a>.</p>
