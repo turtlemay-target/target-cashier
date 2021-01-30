@@ -27,7 +27,6 @@ export const InfoView = () => (
 			<section>
 				<h2>🧰 Other Tools</h2>
 				<ul>
-				
 					<li><a href="https://github.com/turtlemay-target/turtlemay-target">Target browser extension</a></li>
 					<li><a href="https://github.com/turtlemay-target/T1058-Cheatsheet">T1058 checklane cheat sheet</a></li>
 				</ul>
