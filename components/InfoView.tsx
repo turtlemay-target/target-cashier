@@ -6,7 +6,7 @@ export const InfoView = () => (
 	<div className="infoView__root">
 		<div className="infoView__mainContainer">
 			<section>
-				<p>This app assists Target cashiers in scanning produce, looking up item codes, and performing calculations.</p>
+				<p>This app assists Target cashiers in scanning produce, looking up item codes, and performing calculations. See demo and source code <a href="https://github.com/turtlemay-target/target-cashier">here</a>.</p>
 				<h2>✨ Features</h2>
 				<ul>
 					<li>Enter search text into the query box to display a list of items found in the database.</li>
