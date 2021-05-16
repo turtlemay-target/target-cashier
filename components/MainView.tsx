@@ -105,6 +105,11 @@ export const MainView = (props: {
 		if (query.length === 0)
 			return
 
+		if (query === 'wc') {
+			history.push('/wcalc')
+			return
+		}
+
 		setSplitQueries(splitQuery(query))
 
 		const queryParams = new URLSearchParams(location.search)
