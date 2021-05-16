@@ -3,9 +3,9 @@ import * as lodash from 'lodash'
 import c from 'classnames'
 
 export function WeightCalcView() {
-	const [bundleLbs, setBundleLbs] = React.useState<number>(0)
-	const [containerOz, setContainerOz] = React.useState<number>(0)
-	const [containerLbs, setContainerLbs] = React.useState<number>(0)
+	const [bundleLbs, setBundleLbs] = React.useState<string | number>('0')
+	const [containerOz, setContainerOz] = React.useState<string | number>('0')
+	const [containerLbs, setContainerLbs] = React.useState<string | number>('0')
 
 	return (
 		<div className="weightCalcView__root">
@@ -66,7 +66,7 @@ export function WeightCalcView() {
 				<div className="weightCalcView__resultContainer">
 					<span>Item weight:&nbsp;</span>
 					<span className="weightCalcView__resultText">
-						{calcItemWeight(bundleLbs, containerLbs)}
+						{calcItemWeight(Number(bundleLbs), Number(containerLbs))}
 					</span>
 					<span>&nbsp;lbs</span>
 				</div>
@@ -75,19 +75,19 @@ export function WeightCalcView() {
 	)
 
 	function handleChangeBundleLbs(event: React.ChangeEvent<HTMLInputElement>) {
-		setBundleLbs(Number(event.target.value))
+		setBundleLbs(event.target.value)
 	}
 
 	function handleChangeContainerOz(event: React.ChangeEvent<HTMLInputElement>) {
-		const n = Number(event.target.value)
-		setContainerOz(n)
-		setContainerLbs(ozToLbs(n))
+		const v = event.target.value
+		setContainerOz(v)
+		if (v) setContainerLbs(ozToLbs(Number(v)))
 	}
 
 	function handleChangeContainerLbs(event: React.ChangeEvent<HTMLInputElement>) {
-		const n = Number(event.target.value)
-		setContainerOz(lbsToOz(n))
-		setContainerLbs(n)
+		const v = event.target.value
+		setContainerLbs(v)
+		if (v) setContainerOz(lbsToOz(Number(v)))
 	}
 
 	function handleFocusInput(event: React.FocusEvent<HTMLInputElement>) {
