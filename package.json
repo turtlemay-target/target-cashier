@@ -1,6 +1,6 @@
 {
 	"private": true,
-	"name": "target-cashier",
+	"name": "gianteagle-cashier",
 	"version": "0.0.6-2",
 	"scripts": {
 		"start": "webpack-dev-server --mode development --host 0.0.0.0",
@@ -23,7 +23,7 @@
 		"react-helmet": "^6.1.0",
 		"react-router-dom": "^5.2.0",
 		"react-transition-group": "^4.4.1",
-		"target-db-schema": "turtlemay-target/target-db-schema"
+		"gianteagle-db-schema": "turtlemay-gianteagle/gianteagle-db-schema"
 	},
 	"devDependencies": {
 		"@types/classnames": "^2.2.11",

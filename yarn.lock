@@ -1930,6 +1930,10 @@ get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
+gianteagle-db-schema@turtlemay-gianteagle/gianteagle-db-schema:
+  version "0.0.1"
+  resolved "https://codeload.github.com/turtlemay-gianteagle/gianteagle-db-schema/tar.gz/0df8e9cfdf78530d92082ce8a11bc129d51d52cd"
+
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -4288,10 +4292,6 @@ tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
   integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
-
-target-db-schema@turtlemay-target/target-db-schema:
-  version "0.0.1"
-  resolved "https://codeload.github.com/turtlemay-target/target-db-schema/tar.gz/31c118da838f857c43d8c459c6e4890de9a08a3b"
 
 terser-webpack-plugin@^1.4.3:
   version "1.4.5"

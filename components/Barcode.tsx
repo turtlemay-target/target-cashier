@@ -37,10 +37,22 @@ export function Barcode(props: {
 
 function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
 	if (value.match(PLU_REGEX)) {
-		QRCode.toCanvas(elem, value, err => {
-			if (err) console.error(err)
-		})
-		return
+		// Don't use QR format because Giant Eagle does not support it for PLUs.
+		if (false) {
+			QRCode.toCanvas(elem, value, err => {
+				if (err) console.error(err)
+			})
+			return
+		}
+
+		// Use UPC format for PLU codes.
+		try {
+			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+			jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
+			return
+		} catch (err) {
+			console.error(err)
+		}
 	}
 
 	if (value.match(UPC_REGEX)) {
