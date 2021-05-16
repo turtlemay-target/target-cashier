@@ -22,12 +22,12 @@ export const InfoView = () => (
 					<li>Initial build (May 2021).</li>
 				</ul>
 			</section>
-			{/* <section>
+			<section>
 				<h2>🧰 Other Tools</h2>
 				<ul>
-					<li><a href=""></a></li>
+					<li><Link to="/wcalc">Weight Calculator</Link></li>
 				</ul>
-			</section> */}
+			</section>
 			<section>
 				<p><span>Software version <strong>{packageJson.version}</strong>.</span></p>
 				<p>We use the latest browser APIs so ensure your OS, browser and/or WebView is up to date. An Android device with peripheral keyboard is recommended.</p>

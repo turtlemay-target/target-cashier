@@ -5,6 +5,7 @@ import { MainView } from './MainView'
 import { PrefsView } from './PrefsView'
 import { AppStateProvider } from './AppStateProvider'
 import { InfoView } from './InfoView'
+import { WeightCalcView } from './WeightCalcView'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 export const App = () => (
@@ -29,6 +30,7 @@ const AppMainRouteComponent = (props: RouteComponentProps) => {
 							<Switch location={props.location}>
 								<Route exact path="/prefs" component={PrefsView} />
 								<Route exact path="/info" component={InfoView} />
+								<Route exact path="/wcalc" component={WeightCalcView} />
 							</Switch>
 						</CSSTransition>
 					</TransitionGroup>

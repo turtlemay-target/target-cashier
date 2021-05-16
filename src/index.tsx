@@ -19,6 +19,7 @@ import 'style-loader!../styles/shadowbox.css'
 import 'style-loader!../styles/item-cards.css'
 import 'style-loader!../styles/info-view.css'
 import 'style-loader!../styles/prefs-view.css'
+import 'style-loader!../styles/weight-calc-view.css'
 
 const jsx = (
 	<React.Fragment>
