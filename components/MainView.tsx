@@ -73,11 +73,13 @@ export const MainView = (props: {
 				if (splitQueries.length > 1) {
 					if ([e.key, e.code].includes(context.appNavViewLeftKey)) {
 						e.preventDefault()
+						setThrobber(false)
 						setActiveQueryLeft()
 						return
 					}
 					if ([e.key, e.code].includes(context.appNavViewRightKey)) {
 						e.preventDefault()
+						setThrobber(false)
 						setActiveQueryRight()
 						return
 					}
