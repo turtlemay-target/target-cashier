@@ -10,15 +10,15 @@ const DEFAULT_PREFS = {
 	dbUrl: 'https://db1.gianteagle.turtlemay.us/',
 	userItems: '',
 	itemsPerPage: 4,
-	defaultQuery: 'stamps',
+	itemTagPrefix: '#',
+	organicModifier: '!',
+	querySeparator: ';',
+	defaultQuery: '#reg',
 	tokenizeSearch: false,
 	resetQueryKey: '`',
 	appNavBackKey: 'Escape',
 	appNavViewLeftKey: '[',
 	appNavViewRightKey: ']',
-	querySeparator: ';',
-	organicModifier: '!',
-	itemTagPrefix: 'tag:',
 }
 
 type IPrefs = typeof DEFAULT_PREFS
