@@ -7,7 +7,7 @@ import { loadCacheDb, validateDb, saveCacheDb, getRemoteDb, clearCacheDb } from 
 const LOCAL_STORAGE_KEY = 'user-prefs'
 
 const DEFAULT_PREFS = {
-	dbUrl: 'https://db1.gianteagle.turtlemay.us/',
+	dbUrl: 'https://db.gianteagle.turtlemay.us/',
 	userItems: '',
 	itemsPerPage: 4,
 	itemTagPrefix: '#',
