@@ -57,7 +57,13 @@ export function MainViewQueryResults(props: {
 			setSearchResults(context.compiledItemData.filter(v => v.tags?.includes(matchedTagName)))
 		} else {
 			setEnablePaging(true)
-			setSearchResults(context.search(props.query))
+			setSearchResults(context.search(ignoreModifier(props.query)))
+
+			function ignoreModifier(str: string) {
+				if (context.organicModifier)
+					return str.replace(new RegExp(context.organicModifier, 'g'), '')
+				return str
+			}
 		}
 
 		const matchedBarcodeValue = props.query.match(/\d{4,24}/)?.[0] || null
