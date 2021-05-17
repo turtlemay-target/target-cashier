@@ -27,7 +27,10 @@ export function PrefsView() {
 							onCommit={v => context.provider.setState({ dbUrl: v })}
 							onStartInput={() => setThrobber(true)}
 							onStopInput={() => setThrobber(false)}
-							passProps={{ onClick: e => e?.target?.select?.() }} />,
+							passProps={{ onMouseDown: e => {
+								if (document.activeElement !== e?.target)
+									e?.target?.select?.()
+							} }} />,
 						stateInfo: Function.call.call(() => {
 							if (context.dbInfo)
 								return `Loaded remote database "${context.dbInfo.name}" ${context.dbInfo.version}.`
