@@ -18,6 +18,7 @@ const DEFAULT_PREFS = {
 	appNavViewRightKey: ']',
 	querySeparator: ';',
 	organicModifier: '!',
+	itemTagPrefix: 'tag:',
 }
 
 type IPrefs = typeof DEFAULT_PREFS

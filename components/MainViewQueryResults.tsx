@@ -51,7 +51,8 @@ export function MainViewQueryResults(props: {
 
 		setNumRenderResultItems(context.itemsPerPage)
 
-		const matchedTagName = props.query.match(/tag:(\S*)/)?.[1]
+		const tagMatchRegex = new RegExp(`${context.itemTagPrefix}(\\S*)`)
+		const matchedTagName = props.query.match(tagMatchRegex)?.[1]
 		if (matchedTagName) {
 			setEnablePaging(false)
 			setSearchResults(context.compiledItemData.filter(v => v.tags?.includes(matchedTagName)))

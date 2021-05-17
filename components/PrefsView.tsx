@@ -80,6 +80,15 @@ export function PrefsView() {
 					}}</PrefsOption>
 
 					<PrefsOption>{{
+						label: "Tag prefix",
+						description: "Prefix query to show items with a tag.",
+						controlNode: <input type="text"
+							className="prefsView__optionTextInput"
+							value={context.itemTagPrefix}
+							onChange={e => context.provider.setState({ itemTagPrefix: e.target.value })} />,
+					}}</PrefsOption>
+
+					<PrefsOption>{{
 						label: "Organic modifier",
 						description: "Append this string to queries to automatically add organic prefix to all results.",
 						controlNode: <input type="text"
