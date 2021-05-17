@@ -107,7 +107,7 @@ export function MainViewQueryResults(props: {
 					return arr.map((v, i) => (
 						<CSSTransition classNames="mainView__resultItemTransition" key={`${v.value}.${v.name}.${i}`} timeout={250}>
 							<div className="mainView__queryResultNode">
-								<StoreItemCard data={v} onPick={props.onPickShadowBoxElem} />
+								<StoreItemCard data={v} onPick={props.onPickShadowBoxElem} query={props.query} />
 							</div>
 						</CSSTransition>
 					))

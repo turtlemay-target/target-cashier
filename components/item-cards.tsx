@@ -3,17 +3,28 @@ import { Barcode } from './Barcode'
 import { AppStateContext } from './AppStateProvider'
 
 export function StoreItemCard(props: {
+	query: string
 	data: IItemData
 	onPick?: (jsx: JSX.Element) => void
 }) {
 	const context = React.useContext(AppStateContext)
+
+	let name = props.data.name
+	let value = String(props.data.value)
+
+	// Add organic prefix.
+	if (props.query.endsWith(context.organicModifier) && value.length === 4 && !name.includes('organic')) {
+		name = `[Organic] ${name}`
+		value = '9' + value
+	}
+	
 	const jsx = (
-		<div className="itemCards__storeItemCard" data-name={props.data.name} data-color={props.data.uiColor}>
-			<div className="itemCards__storeItemName">{props.data.name}</div>
+		<div className="itemCards__storeItemCard" data-name={name} data-color={props.data.uiColor}>
+			<div className="itemCards__storeItemName">{name}</div>
 			<Barcode className="itemCards__storeItemBarcode"
-				value={`${props.data.value}`}
+				value={value}
 				onClickBarcode={() => props.onPick?.(jsx)} />
-			<div className="itemCards__storeItemId">{props.data.value}</div>
+			<div className="itemCards__storeItemId">{value}</div>
 		</div>
 	)
 	return jsx

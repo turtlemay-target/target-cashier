@@ -80,6 +80,15 @@ export function PrefsView() {
 					}}</PrefsOption>
 
 					<PrefsOption>{{
+						label: "Organic modifier",
+						description: "Append this string to queries to automatically add organic prefix to all results.",
+						controlNode: <input type="text"
+							className="prefsView__optionTextInput"
+							value={context.organicModifier}
+							onChange={e => context.provider.setState({ organicModifier: e.target.value })} />,
+					}}</PrefsOption>
+
+					<PrefsOption>{{
 						label: "Default query",
 						description: "Press reset button to return to this query.",
 						controlNode: <input type="text"
