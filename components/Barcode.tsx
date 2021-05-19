@@ -4,6 +4,7 @@ import jsbarcode from 'jsbarcode'
 
 const PLU_REGEX = /^\d{4,5}$/
 const UPC_REGEX = /^\d{11,12}$/
+const SKU_REGEX = /^\d{14}$/
 
 export function Barcode(props: {
 	className?: string
@@ -59,6 +60,18 @@ function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
 		try {
 			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
 			jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
+			return
+		} catch (err) {
+			console.error(err)
+		}
+	}
+
+	// Take UPC from SKU format.
+	if (SKU_REGEX) {
+		const upc = value.substring(2)
+		try {
+			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+			jsbarcode(elem, upc, barcodeOpts)
 			return
 		} catch (err) {
 			console.error(err)
