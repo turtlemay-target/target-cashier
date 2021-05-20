@@ -67,7 +67,7 @@ function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
 	}
 
 	// Take UPC from SKU format.
-	if (SKU_REGEX) {
+	if (value.match(SKU_REGEX)) {
 		const upc = value.substring(2)
 		try {
 			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
