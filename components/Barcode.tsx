@@ -30,6 +30,14 @@ export function Barcode(props: {
 			renderBarcode(canvasElemRef.current, props.value, jsBarcodeOpts)
 	})
 
+	function handleKeyDown(e: React.KeyboardEvent<HTMLElement>) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault()
+			const el = e.target as HTMLElement
+			el?.click()
+		}
+	}
+
 	return (
 		<div role="button" className={props.className}
 			key={props.value}
@@ -40,14 +48,6 @@ export function Barcode(props: {
 			<canvas ref={canvasElemRef} />
 		</div>
 	)
-
-	function handleKeyDown(e: React.KeyboardEvent<HTMLElement>) {
-		if (e.key === 'Enter' || e.key === ' ') {
-			e.preventDefault()
-			const el = e.target as HTMLElement
-			el?.click()
-		}
-	}
 }
 
 function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
