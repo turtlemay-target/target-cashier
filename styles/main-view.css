@@ -229,7 +229,7 @@
 	width: 100%;
 }
 
-.mainView__queryResultNode:not(:last-of-type)::after {
+.mainView__queryResultNode:not(:last-child)::after {
 	content: '';
 	display: block;
 	width: 1px;
