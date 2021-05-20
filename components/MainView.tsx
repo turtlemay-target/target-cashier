@@ -9,6 +9,7 @@ import { ConditionalRenderer } from './ConditionalRenderer'
 import { Shadowbox } from './Shadowbox'
 import { useHistory, useLocation } from 'react-router-dom'
 import { MainViewQueryResults } from './MainViewQueryResults'
+import { Untabbable } from '../lib/tabindex'
 
 export const MainView = (props: {
 	className?: string
@@ -260,15 +261,17 @@ export const MainView = (props: {
 
 				<div className="mainView__queryResultListViewContainer">
 					{splitQueries.map((q, i) => (
-						<MainViewQueryResults key={i} query={q}
-							className={c('mainView__queryResultListView', {
-								'active': i === activeQueryIndex,
-								'hideToLeft': i < activeQueryIndex,
-								'hideToRight': i > activeQueryIndex,
-							})}
-							active={i === activeQueryIndex}
-							onPickShadowBoxElem={onPickShadowBoxElem}
-							onResetQueryDelegate={onResetQueryDelegate} />
+						<Untabbable active={showShadowbox || i !== activeQueryIndex} key={i}>
+							<MainViewQueryResults query={q}
+								className={c('mainView__queryResultListView', {
+									'active': i === activeQueryIndex,
+									'hideToLeft': i < activeQueryIndex,
+									'hideToRight': i > activeQueryIndex,
+								})}
+								active={i === activeQueryIndex}
+								onPickShadowBoxElem={onPickShadowBoxElem}
+								onResetQueryDelegate={onResetQueryDelegate} />
+						</Untabbable>
 					))}
 				</div>
 
@@ -299,7 +302,9 @@ export const MainView = (props: {
 					</div>
 				</div>
 
-				<Shadowbox className="mainView__shadowbox" active={showShadowbox} item={shadowBoxElem} />
+				<Untabbable active={!showShadowbox}>
+					<Shadowbox className="mainView__shadowbox" active={showShadowbox} item={shadowBoxElem} />
+				</Untabbable>
 
 			</div>
 

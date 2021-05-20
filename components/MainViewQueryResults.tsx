@@ -6,6 +6,7 @@ import { usePrevious } from '../lib/react'
 import { ConditionalRenderer } from './ConditionalRenderer'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { StoreItemCard, GeneratedItemCard } from './item-cards'
+import { useTabIndex } from '../lib/tabindex'
 
 export function MainViewQueryResults(props: {
 	className?: string
@@ -15,6 +16,7 @@ export function MainViewQueryResults(props: {
 	onResetQueryDelegate: Set<VoidFunction>
 }) {
 	const context = React.useContext(AppStateContext)
+	const tabIndex = useTabIndex(0)
 	const [searchResults, setSearchResults] = React.useState<IItemData[]>(context.search(props.query))
 	const [numRenderResultItems, setNumRenderResultItems] = React.useState(context.itemsPerPage)
 	const [typedCode, setTypedCode] = React.useState('')
@@ -97,7 +99,7 @@ export function MainViewQueryResults(props: {
 			<TransitionGroup>
 				<ConditionalRenderer condition={showTypedCode}>
 					<CSSTransition classNames="mainView__resultItemTransition" timeout={250}>
-						<div className="mainView__queryResultNode" tabIndex={props.active ? 0 : -1}>
+						<div className="mainView__queryResultNode" tabIndex={tabIndex}>
 							<GeneratedItemCard value={typedCode} onPick={props.onPickShadowBoxElem} />
 						</div>
 					</CSSTransition>
@@ -116,14 +118,14 @@ export function MainViewQueryResults(props: {
 						arr = arr.slice(0, numRenderResultItems)
 					return arr.map((v, i) => (
 						<CSSTransition classNames="mainView__resultItemTransition" key={`${v.value}.${v.name}.${i}`} timeout={250}>
-							<div className="mainView__queryResultNode" tabIndex={props.active ? 0 : -1}>
+							<div className="mainView__queryResultNode" tabIndex={tabIndex}>
 								<StoreItemCard data={v} onPick={props.onPickShadowBoxElem} query={props.query} />
 							</div>
 						</CSSTransition>
 					))
 				})}
 				<ConditionalRenderer condition={renderShowMoreButton}>
-					<button className="mainView__showMoreButton" onClick={showMore} tabIndex={props.active && renderShowMoreButton ? 0 : -1}>+</button>
+					<button className="mainView__showMoreButton" onClick={showMore} tabIndex={tabIndex}>+</button>
 				</ConditionalRenderer>
 			</TransitionGroup>
 		</div>
