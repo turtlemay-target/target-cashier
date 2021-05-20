@@ -30,13 +30,13 @@ export function Barcode(props: {
 			renderBarcode(canvasElemRef.current, props.value, jsBarcodeOpts)
 	})
 
-	return React.createElement('canvas', {
-		className: props.className,
-		ref: canvasElemRef,
-		onClick: props.onClickBarcode,
-		key: props.value,
-		tabIndex: tabIndex,
-	})
+	return (
+		<canvas className={props.className}
+			ref={canvasElemRef}
+			onClick={props.onClickBarcode}
+			key={props.value}
+			tabIndex={tabIndex} />
+	)
 }
 
 function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
