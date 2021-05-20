@@ -53,6 +53,12 @@ export const MainView = (props: {
 			if (!props.active)
 				return
 
+			if (e.key === "Shift") {
+				focusInputField()
+				clearInputField()
+				return
+			}
+
 			if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey)
 				return
 
