@@ -25,10 +25,12 @@ export function Barcode(props: {
 		flat: true,
 	}
 
-	React.useEffect(() => {
+	React.useEffect(updateValue, [props.value])
+
+	function updateValue() {
 		if (canvasElemRef.current)
 			renderBarcode(canvasElemRef.current, props.value, jsBarcodeOpts)
-	})
+	}
 
 	function handleKeyDown(e: React.KeyboardEvent<HTMLElement>) {
 		if (e.key === 'Enter' || e.key === ' ') {
