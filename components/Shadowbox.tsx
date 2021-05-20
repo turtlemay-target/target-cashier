@@ -50,6 +50,6 @@ export function Shadowbox(props: React.PropsWithChildren<{
 					})}
 				</div>
 			</div>
-		</div >
+		</div>
 	)
 }
