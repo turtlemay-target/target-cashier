@@ -228,7 +228,7 @@ export const MainView = (props: {
 	return (
 		<div className={c('mainView__root mainView__mainLayout', props.className)}>
 			<div className="mainView__mainLayoutTop mainView__mainInputContainer">
-				<div className="mainView__queryNumInputToggleButton">
+				<div className="mainView__queryNumInputToggleButton" role="button">
 					<div className="mainView__queryNumInputToggleButtonText" onClick={onClickToggleKbButton}>
 						<ConditionalRenderer condition={useNumInput} children="⌨️" />
 						<ConditionalRenderer condition={!useNumInput} children="🔢" />
@@ -245,7 +245,7 @@ export const MainView = (props: {
 					commitDelay={300}
 					disabled={!props.active}
 					passProps={{ spellCheck: false }} />
-				<div className="mainView__queryResetButton" onClick={onClickResetButton}>
+				<div className="mainView__queryResetButton" role="button" onClick={onClickResetButton}>
 					<span className="mainView__queryResetButtonText">↶</span>
 				</div>
 			</div>
