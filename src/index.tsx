@@ -8,6 +8,7 @@ import manifest from '../resources/manifest.webmanifest'
 
 import swruntime from 'serviceworker-webpack-plugin/lib/runtime'
 
+import 'style-loader!../styles/global.css'
 import 'style-loader!../styles/colors.css'
 import 'style-loader!../styles/animation.css'
 import 'style-loader!../styles/app.css'
