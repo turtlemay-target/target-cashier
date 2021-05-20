@@ -9,7 +9,7 @@ export function Untabbable({
 }) {
 	const isUntabbable = React.useContext(UntabbableContext)
 	const value = reset ? active : active || isUntabbable
-	return <UntabbableContext.Provider {...{value, children}} />
+	return React.createElement(UntabbableContext.Provider, { value, children })
 }
 
 export function useTabIndex(tabIndex?: number) {
