@@ -82,8 +82,9 @@ export const MainView = (props: {
 			}
 
 			if (e.key === 'Enter') {
-				const isInputFocused = document.activeElement === inputElemRef.current
-				const isTabbableFocused = document.activeElement ? isTabbable(document.activeElement) : false
+				const el = document.activeElement
+				const isInputFocused = el === inputElemRef.current
+				const isTabbableFocused = el ? isTabbable(el) : false
 				if (isInputFocused || !isTabbableFocused) {
 					e.preventDefault()
 					focusInputField()
@@ -95,6 +96,7 @@ export const MainView = (props: {
 			if (inputElemRef && inputElemRef.current !== document.activeElement) {
 				if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.match(/^(\S)$/)) {
 					focusInputField()
+					return
 				}
 			}
 		}
