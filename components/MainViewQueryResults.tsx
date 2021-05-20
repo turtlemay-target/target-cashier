@@ -88,6 +88,8 @@ export function MainViewQueryResults(props: {
 		scrollUpElemRef.current?.scrollTo(scrollToOptions)
 	}
 
+	const renderShowMoreButton = enablePaging && numRenderResultItems < searchResults.length
+
 	return (
 		<div className={c('mainView__queryResultList', props.className)}
 			ref={scrollUpElemRef as React.RefObject<HTMLDivElement>}>
@@ -119,7 +121,7 @@ export function MainViewQueryResults(props: {
 						</CSSTransition>
 					))
 				})}
-				<ConditionalRenderer condition={enablePaging && numRenderResultItems < searchResults.length}>
+				<ConditionalRenderer condition={renderShowMoreButton}>
 					<button className="mainView__showMoreButton" onClick={showMore}>+</button>
 				</ConditionalRenderer>
 			</TransitionGroup>
