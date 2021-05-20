@@ -41,15 +41,11 @@ export function Shadowbox(props: React.PropsWithChildren<{
 			</div>
 			<div className="shadowbox__layoutbottom">
 				<div className="shadowbox__itemcontainer">
-					{Function.call.call(() => {
-						if (props.item)
-							return props.item
-						return (
-							<div className="shadowbox__noitem">
-								There's nothing here.
-							</div>
-						)
-					})}
+					{props.item ?? (
+						<div className="shadowbox__noitem">
+							There's nothing here.
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
