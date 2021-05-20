@@ -260,6 +260,7 @@ export const MainView = (props: {
 								'hideToLeft': i < activeQueryIndex,
 								'hideToRight': i > activeQueryIndex,
 							})}
+							active={i === activeQueryIndex}
 							onPickShadowBoxElem={onPickShadowBoxElem}
 							onResetQueryDelegate={onResetQueryDelegate} />
 					))}
@@ -281,12 +282,12 @@ export const MainView = (props: {
 
 				<div className="mainView__viewNavContainer">
 					<div className="mainView__viewNavButtonLeftContainer">
-						<button className={c('mainView__viewNavButtonLeft', { 'active': showViewLeftButton })} onClick={setActiveQueryLeft}>
+						<button className={c('mainView__viewNavButtonLeft', { 'active': showViewLeftButton })} onClick={setActiveQueryLeft} tabIndex={-1}>
 							<span>‹</span>
 						</button>
 					</div>
 					<div className="mainView__viewNavButtonRightContainer">
-						<button className={c('mainView__viewNavButtonRight', { 'active': showViewRightButton })} onClick={setActiveQueryRight}>
+						<button className={c('mainView__viewNavButtonRight', { 'active': showViewRightButton })} onClick={setActiveQueryRight} tabIndex={-1}>
 							<span>›</span>
 						</button>
 					</div>
