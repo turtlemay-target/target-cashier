@@ -214,6 +214,9 @@ export const MainView = (props: {
 		setActiveQueryIndex(lodash.clamp(activeQueryIndex + 1, 0, splitQueries.length - 1))
 	}
 
+	const showViewLeftButton = activeQueryIndex > 0
+	const showViewRightButton = activeQueryIndex < splitQueries.length - 1
+
 	return (
 		<div className={c('mainView__root mainView__mainLayout', props.className)}>
 			<div className="mainView__mainLayoutTop mainView__mainInputContainer">
