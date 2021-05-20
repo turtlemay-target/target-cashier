@@ -216,6 +216,7 @@
 .mainView__queryResultList {
 	padding: 4em 0.5em 0;
 	overflow-y: scroll;
+	scroll-behavior: smooth;
 }
 
 .mainView__queryResultList::after {

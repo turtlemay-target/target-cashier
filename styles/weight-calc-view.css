@@ -4,6 +4,7 @@
 	background: black;
 	color: #999;
 	overflow-y: scroll;
+	scroll-behavior: smooth;
 }
 
 .weightCalcView__mainContainer {
