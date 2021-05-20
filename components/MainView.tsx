@@ -277,14 +277,14 @@ export const MainView = (props: {
 
 				<div className="mainView__viewNavContainer">
 					<div className="mainView__viewNavButtonLeftContainer">
-						<div className={c('mainView__viewNavButtonLeft', { 'active': activeQueryIndex > 0 })} onClick={setActiveQueryLeft}>
+						<button className={c('mainView__viewNavButtonLeft', { 'active': showViewLeftButton })} onClick={setActiveQueryLeft}>
 							<span>‹</span>
-						</div>
+						</button>
 					</div>
 					<div className="mainView__viewNavButtonRightContainer">
-						<div className={c('mainView__viewNavButtonRight', { 'active': activeQueryIndex < splitQueries.length - 1 })} onClick={setActiveQueryRight}>
+						<button className={c('mainView__viewNavButtonRight', { 'active': showViewRightButton })} onClick={setActiveQueryRight}>
 							<span>›</span>
-						</div>
+						</button>
 					</div>
 				</div>
 
