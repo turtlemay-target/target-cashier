@@ -12,6 +12,7 @@
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"fuse.js": "^6.4.3",
+		"gianteagle-db-schema": "turtlemay-gianteagle/gianteagle-db-schema",
 		"js-yaml": "^3.14.0",
 		"jsbarcode": "^3.11.3",
 		"jsonschema": "^1.4.0",
@@ -23,7 +24,7 @@
 		"react-helmet": "^6.1.0",
 		"react-router-dom": "^5.2.0",
 		"react-transition-group": "^4.4.1",
-		"gianteagle-db-schema": "turtlemay-gianteagle/gianteagle-db-schema"
+		"tabbable": "^5.2.0"
 	},
 	"devDependencies": {
 		"@types/classnames": "^2.2.11",
