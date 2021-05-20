@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as QRCode from 'qrcode'
 import jsbarcode from 'jsbarcode'
+import { useTabIndex } from '../lib/tabindex'
 
 const PLU_REGEX = /^\d{4,5}$/
 const UPC_REGEX = /^\d{11,12}$/
@@ -11,6 +12,7 @@ export function Barcode(props: {
 	value: string
 	onClickBarcode?: VoidFunction
 }) {
+	const tabIndex = useTabIndex(0)
 	const canvasElemRef = React.createRef<HTMLCanvasElement>()
 
 	const jsBarcodeOpts = {
@@ -33,6 +35,7 @@ export function Barcode(props: {
 		ref: canvasElemRef,
 		onClick: props.onClickBarcode,
 		key: props.value,
+		tabIndex: tabIndex,
 	})
 }
 

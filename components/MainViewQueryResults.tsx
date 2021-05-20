@@ -99,7 +99,7 @@ export function MainViewQueryResults(props: {
 			<TransitionGroup>
 				<ConditionalRenderer condition={showTypedCode}>
 					<CSSTransition classNames="mainView__resultItemTransition" timeout={250}>
-						<div className="mainView__queryResultNode" tabIndex={tabIndex}>
+						<div className="mainView__queryResultNode">
 							<GeneratedItemCard value={typedCode} onPick={props.onPickShadowBoxElem} />
 						</div>
 					</CSSTransition>
@@ -118,7 +118,7 @@ export function MainViewQueryResults(props: {
 						arr = arr.slice(0, numRenderResultItems)
 					return arr.map((v, i) => (
 						<CSSTransition classNames="mainView__resultItemTransition" key={`${v.value}.${v.name}.${i}`} timeout={250}>
-							<div className="mainView__queryResultNode" tabIndex={tabIndex}>
+							<div className="mainView__queryResultNode">
 								<StoreItemCard data={v} onPick={props.onPickShadowBoxElem} query={props.query} />
 							</div>
 						</CSSTransition>
