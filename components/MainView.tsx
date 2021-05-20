@@ -56,13 +56,6 @@ export const MainView = (props: {
 			if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey)
 				return
 
-			if (e.key === 'Enter') {
-				e.preventDefault()
-				focusInputField()
-				clearInputField()
-				return
-			}
-
 			if ([e.key, e.code].includes(context.resetQueryKey)) {
 				e.preventDefault()
 				resetQuery()
@@ -83,6 +76,14 @@ export const MainView = (props: {
 						setActiveQueryRight()
 						return
 					}
+				}
+			}
+
+			if (inputElemRef.current === document.activeElement) {
+				if (e.key === 'Enter') {
+					e.preventDefault()
+					clearInputField()
+					return
 				}
 			}
 
