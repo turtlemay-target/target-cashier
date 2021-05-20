@@ -94,7 +94,7 @@ export const MainView = (props: {
 			}
 
 			if (inputElemRef && inputElemRef.current !== document.activeElement) {
-				if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.match(/^(\w)$/)) {
+				if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.match(/^(\S)$/)) {
 					focusInputField()
 				}
 			}
