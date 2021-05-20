@@ -2,7 +2,7 @@ import * as React from 'react'
 import c from 'classnames'
 import { useLocation, useHistory } from 'react-router-dom'
 import { AppStateContext } from './AppStateProvider'
-import { useTabIndex } from '../lib/tabindex'
+import { Untabbable, useTabIndex } from '../lib/tabindex'
 
 export function Shadowbox(props: React.PropsWithChildren<{
 	className?: string
@@ -41,11 +41,13 @@ export function Shadowbox(props: React.PropsWithChildren<{
 			</div>
 			<div className="shadowbox__layoutbottom">
 				<div className="shadowbox__itemcontainer">
-					{props.item ?? (
-						<div className="shadowbox__noitem">
-							There's nothing here.
-						</div>
-					)}
+					<Untabbable>
+						{props.item ?? (
+							<div className="shadowbox__noitem">
+								There's nothing here.
+							</div>
+						)}
+					</Untabbable>
 				</div>
 			</div>
 		</div>
