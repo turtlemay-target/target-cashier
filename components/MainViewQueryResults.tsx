@@ -120,7 +120,7 @@ export function MainViewQueryResults(props: {
 					))
 				})}
 				<ConditionalRenderer condition={enablePaging && numRenderResultItems < searchResults.length}>
-					<div className="mainView__showMoreButton" onClick={showMore}>+</div>
+					<button className="mainView__showMoreButton" onClick={showMore}>+</button>
 				</ConditionalRenderer>
 			</TransitionGroup>
 		</div>

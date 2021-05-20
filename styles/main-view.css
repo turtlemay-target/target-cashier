@@ -257,6 +257,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: 0;
 	background: rgba(30, 30, 30, 0.9);
 	color: #666;
 	font: 3rem monospace;
