@@ -10,6 +10,7 @@ import { Shadowbox } from './Shadowbox'
 import { useHistory, useLocation } from 'react-router-dom'
 import { MainViewQueryResults } from './MainViewQueryResults'
 import { Untabbable } from '../lib/tabindex'
+import { isTabbable } from 'tabbable'
 
 export const MainView = (props: {
 	className?: string
@@ -80,9 +81,12 @@ export const MainView = (props: {
 				}
 			}
 
-			if (inputElemRef.current === document.activeElement) {
-				if (e.key === 'Enter') {
+			if (e.key === 'Enter') {
+				const isInputFocused = document.activeElement === inputElemRef.current
+				const isTabbableFocused = document.activeElement ? isTabbable(document.activeElement) : false
+				if (isInputFocused || !isTabbableFocused) {
 					e.preventDefault()
+					focusInputField()
 					clearInputField()
 					return
 				}
