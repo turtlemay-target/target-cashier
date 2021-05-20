@@ -12,7 +12,6 @@
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"fuse.js": "^6.4.3",
-		"gianteagle-db-schema": "turtlemay-gianteagle/gianteagle-db-schema",
 		"js-yaml": "^3.14.0",
 		"jsbarcode": "^3.11.3",
 		"jsonschema": "^1.4.0",
@@ -23,8 +22,8 @@
 		"react-dom": "^17.0.1",
 		"react-helmet": "^6.1.0",
 		"react-router-dom": "^5.2.0",
-		"react-tabindex": "^1.0.3",
-		"react-transition-group": "^4.4.1"
+		"react-transition-group": "^4.4.1",
+		"gianteagle-db-schema": "turtlemay-gianteagle/gianteagle-db-schema"
 	},
 	"devDependencies": {
 		"@types/classnames": "^2.2.11",
