@@ -157,6 +157,7 @@ export const MainView = (props: {
 		onResetQueryDelegate.forEach(fn => fn?.())
 		setActiveQueryIndex(0)
 		setQuery(context.defaultQuery)
+		setThrobber(false)
 		setUseNumInput(false)
 		const queryParams = new URLSearchParams(location.search)
 		if (queryParams.has('sb')) {
