@@ -28,9 +28,7 @@ export function PrefsView() {
 							<option value="GIANT_EAGLE">Giant Eagle</option>
 						</select>,
 					}}</PrefsOption>
-				</section>
 
-				<section>
 					<PrefsOption>{{
 						label: "🔗 Database URL", description: "Must match our JSON schema and serve over HTTPS. Defaults to Turtlemay's store database.",
 						controlNode: <DelayedTextInput
