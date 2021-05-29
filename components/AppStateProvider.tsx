@@ -182,12 +182,19 @@ export class AppStateProvider extends React.Component<{}, IState> {
 }
 
 function getDefaultDbUrl() {
+	// Try to use environment variable (via webpack).
+	const envUrl = process.env.DEFAULT_DB_URL
+	if (envUrl) {
+		return envUrl
+	}
+	// Fall back to checking host location.
 	if (location.host.includes('gianteagle')) {
 		return 'https://db.gianteagle.turtlemay.us/'
 	}
 	if (location.host.includes('target')) {
 		return 'https://db.target.turtlemay.us/'
 	}
+	// Default to Giant Eagle.
 	return 'https://db.gianteagle.turtlemay.us/'
 }
 
