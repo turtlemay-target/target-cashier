@@ -7,7 +7,7 @@ import { loadCacheDb, validateDb, saveCacheDb, getRemoteDb, clearCacheDb } from 
 const LOCAL_STORAGE_KEY = 'user-prefs'
 
 const DEFAULT_PREFS = {
-	dbUrl: 'https://db.gianteagle.turtlemay.us/',
+	dbUrl: getDefaultDbUrl(),
 	userItems: '',
 	itemsPerPage: 4,
 	itemTagPrefix: '#',
@@ -179,6 +179,16 @@ export class AppStateProvider extends React.Component<{}, IState> {
 			],
 		})
 	}
+}
+
+function getDefaultDbUrl() {
+	if (location.host.includes('gianteagle')) {
+		return 'https://db.gianteagle.turtlemay.us/'
+	}
+	if (location.host.includes('target')) {
+		return 'https://db.target.turtlemay.us/'
+	}
+	return 'https://db.gianteagle.turtlemay.us/'
 }
 
 interface IUserItemData {
