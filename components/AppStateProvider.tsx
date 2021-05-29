@@ -13,7 +13,7 @@ const DEFAULT_PREFS = {
 	itemTagPrefix: '#',
 	organicModifier: '!',
 	querySeparator: ';',
-	defaultQuery: '#reg',
+	defaultQuery: '',
 	tokenizeSearch: false,
 	resetQueryKey: '`',
 	appNavBackKey: 'Escape',
