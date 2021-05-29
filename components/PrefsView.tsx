@@ -19,6 +19,19 @@ export function PrefsView() {
 
 				<section>
 					<PrefsOption>{{
+						label: "🏢 Organization",
+						controlNode: <select className="prefsView__optionTextInput"
+								value={context.organizationID}
+								onChange={e => context.provider.setState({ organizationID: e.target.value })}>
+							<option value=""></option>
+							<option value="TARGET">Target</option>
+							<option value="GIANT_EAGLE">Giant Eagle</option>
+						</select>,
+					}}</PrefsOption>
+				</section>
+
+				<section>
+					<PrefsOption>{{
 						label: "🔗 Database URL", description: "Must match our JSON schema and serve over HTTPS. Defaults to Turtlemay's store database.",
 						controlNode: <DelayedTextInput
 							className="prefsView__optionTextInput"

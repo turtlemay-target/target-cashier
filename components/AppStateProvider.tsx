@@ -19,6 +19,7 @@ const DEFAULT_PREFS = {
 	appNavBackKey: 'Escape',
 	appNavViewLeftKey: '[',
 	appNavViewRightKey: ']',
+	organizationID: '',
 }
 
 type IPrefs = typeof DEFAULT_PREFS
