@@ -6,6 +6,7 @@ type IItemDbInfo = Pick<IItemDb, 'name' | 'version'>
 interface IItemDb {
   name: string
   version: string
+  organization?: string
   items: IItemData[]
 }
 
