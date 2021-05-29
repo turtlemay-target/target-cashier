@@ -31,7 +31,7 @@ export const MainView = (props: {
 	const [showShadowbox, setShowShadowbox] = React.useState(false)
 	const [useNumInput, setUseNumInput] = React.useState(false)
 	const [onResetQueryDelegate] = React.useState(new Set<VoidFunction>())
-	const inputElemRef = React.useRef<HTMLInputElement>()
+	const inputElemRef = React.useRef<HTMLInputElement>(null)
 
 	React.useEffect(initSelectInput, [])
 	React.useEffect(updateKeyListener)
