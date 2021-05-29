@@ -21,6 +21,10 @@
 	margin: 10px;
 }
 
+.itemCards__storeItemBarcode--disabled {
+	display: none;
+}
+
 .itemCards__generatedBarcodeCard {
 	display: inline-block;
 	background: white;

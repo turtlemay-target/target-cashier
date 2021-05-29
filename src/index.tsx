@@ -8,6 +8,7 @@ import manifest from '../resources/manifest.webmanifest'
 
 import swruntime from 'serviceworker-webpack-plugin/lib/runtime'
 
+import 'style-loader!../styles/global.css'
 import 'style-loader!../styles/colors.css'
 import 'style-loader!../styles/animation.css'
 import 'style-loader!../styles/app.css'
@@ -19,6 +20,7 @@ import 'style-loader!../styles/shadowbox.css'
 import 'style-loader!../styles/item-cards.css'
 import 'style-loader!../styles/info-view.css'
 import 'style-loader!../styles/prefs-view.css'
+import 'style-loader!../styles/weight-calc-view.css'
 
 const jsx = (
 	<React.Fragment>

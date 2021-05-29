@@ -27,10 +27,17 @@ export function PrefsView() {
 							onCommit={v => context.provider.setState({ dbUrl: v })}
 							onStartInput={() => setThrobber(true)}
 							onStopInput={() => setThrobber(false)}
-							passProps={{ onClick: e => e?.target?.select?.() }} />,
+							passProps={{ onMouseDown: e => {
+								if (document.activeElement !== e?.target)
+									e?.target?.select?.()
+							} }} />,
 						stateInfo: Function.call.call(() => {
 							if (context.dbInfo)
-								return `Loaded remote database "${context.dbInfo.name}" ${context.dbInfo.version}.`
+								return <>
+									<div>Loaded remote database "{context.dbInfo.name}" {context.dbInfo.version}.</div>
+									{context.dbInfo.organization ?
+										<div>Organization: <code>{context.dbInfo.organization}</code></div> : null}
+								</>
 							return "No database found."
 						}),
 					}}</PrefsOption>
@@ -80,12 +87,41 @@ export function PrefsView() {
 					}}</PrefsOption>
 
 					<PrefsOption>{{
+						label: "Tag prefix",
+						description: "Prefix query to show items with a tag.",
+						controlNode: <input type="text"
+							className="prefsView__optionTextInput"
+							value={context.itemTagPrefix}
+							onChange={e => context.provider.setState({ itemTagPrefix: e.target.value })} />,
+					}}</PrefsOption>
+
+					<PrefsOption>{{
+						label: "Organic modifier",
+						description: "Append this string to queries to automatically add organic prefix to all results.",
+						controlNode: <input type="text"
+							className="prefsView__optionTextInput"
+							value={context.organicModifier}
+							onChange={e => context.provider.setState({ organicModifier: e.target.value })} />,
+					}}</PrefsOption>
+
+					<PrefsOption>{{
 						label: "Default query",
 						description: "Press reset button to return to this query.",
 						controlNode: <input type="text"
 							className="prefsView__optionTextInput"
 							value={context.defaultQuery}
 							onChange={e => context.provider.setState({ defaultQuery: e.target.value })} />,
+					}}</PrefsOption>
+				</section>
+
+				<section>
+					<PrefsOption>{{
+						label: "🚫 No Cheat Mode", description: "Disable some barcodes to preserve company metrics.",
+						controlNode: <input
+							className="prefsView__optionCheckbox"
+							type="checkbox"
+							checked={context.noCheat}
+							onChange={e => context.provider.setState({ noCheat: e.target.checked })} />,
 					}}</PrefsOption>
 				</section>
 

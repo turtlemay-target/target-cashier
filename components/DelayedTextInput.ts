@@ -8,7 +8,7 @@ export function DelayedTextInput(props: {
 	type?: string
 	disabled?: boolean
 	placeholder?: string
-	elemRef?: React.MutableRefObject<HTMLElement | undefined>
+	elemRef?: React.RefObject<HTMLElement>
 	children?: React.ReactNode
 	committedValue: string
 	commitDelay: number

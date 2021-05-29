@@ -3,6 +3,7 @@
 	color: white;
 	font: 1rem sans-serif;
 	overflow-y: scroll;
+	scroll-behavior: smooth;
 	padding: 2em 1em;
 }
 

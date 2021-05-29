@@ -172,6 +172,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: 0;
 	background: rgba(30, 30, 30, 0.9);
 	color: #666;
 	border-radius: 50%;
@@ -215,6 +216,7 @@
 .mainView__queryResultList {
 	padding: 4em 0.5em 0;
 	overflow-y: scroll;
+	scroll-behavior: smooth;
 }
 
 .mainView__queryResultList::after {
@@ -229,7 +231,7 @@
 	width: 100%;
 }
 
-.mainView__queryResultNode:not(:last-of-type)::after {
+.mainView__queryResultNode:not(:last-child)::after {
 	content: '';
 	display: block;
 	width: 1px;
@@ -257,6 +259,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: 0;
 	background: rgba(30, 30, 30, 0.9);
 	color: #666;
 	font: 3rem monospace;

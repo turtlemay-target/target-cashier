@@ -1,8 +1,8 @@
 {
-  "short_name": "Target",
-  "name": "Target Cashier",
+  "short_name": "Turtlemay Cashier",
+  "name": "Turtlemay Cashier",
   "default_locale": "en",
-  "description": "Tools for Target cashiers",
+  "description": "Tools for cashiers",
   "author": "Turtlemay",
   "background_color": "#000000",
   "theme_color": "#CC0000",

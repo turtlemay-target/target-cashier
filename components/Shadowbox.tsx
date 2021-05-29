@@ -2,6 +2,7 @@ import * as React from 'react'
 import c from 'classnames'
 import { useLocation, useHistory } from 'react-router-dom'
 import { AppStateContext } from './AppStateProvider'
+import { Untabbable, useTabIndex } from '../lib/tabindex'
 
 export function Shadowbox(props: React.PropsWithChildren<{
 	className?: string
@@ -9,6 +10,7 @@ export function Shadowbox(props: React.PropsWithChildren<{
 	item?: React.ReactNode
 }>) {
 	const context = React.useContext(AppStateContext)
+	const tabIndex = useTabIndex(0)
 	const history = useHistory()
 	const location = useLocation()
 
@@ -35,21 +37,19 @@ export function Shadowbox(props: React.PropsWithChildren<{
 		<div className={c('shadowbox__root', props.className, { 'shadowbox__root--active': props.active })}>
 			<div className="shadowbox__topbar">
 				<div className="shadowbox__topbarlayoutleft" />
-				<div className="shadowbox__closebutton" onClick={handleClose} children="×" />
+				<button className="shadowbox__closebutton" onClick={handleClose} tabIndex={tabIndex} children="×" />
 			</div>
 			<div className="shadowbox__layoutbottom">
 				<div className="shadowbox__itemcontainer">
-					{Function.call.call(() => {
-						if (props.item)
-							return props.item
-						return (
+					<Untabbable>
+						{props.item ?? (
 							<div className="shadowbox__noitem">
 								There's nothing here.
 							</div>
-						)
-					})}
+						)}
+					</Untabbable>
 				</div>
 			</div>
-		</div >
+		</div>
 	)
 }

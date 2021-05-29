@@ -9,6 +9,8 @@ import { ConditionalRenderer } from './ConditionalRenderer'
 import { Shadowbox } from './Shadowbox'
 import { useHistory, useLocation } from 'react-router-dom'
 import { MainViewQueryResults } from './MainViewQueryResults'
+import { Untabbable } from '../lib/tabindex'
+import { isTabbable } from 'tabbable'
 
 export const MainView = (props: {
 	className?: string
@@ -29,7 +31,7 @@ export const MainView = (props: {
 	const [showShadowbox, setShowShadowbox] = React.useState(false)
 	const [useNumInput, setUseNumInput] = React.useState(false)
 	const [onResetQueryDelegate] = React.useState(new Set<VoidFunction>())
-	const inputElemRef = React.useRef<HTMLInputElement>()
+	const inputElemRef = React.useRef<HTMLInputElement>(null)
 
 	React.useEffect(initSelectInput, [])
 	React.useEffect(updateKeyListener)
@@ -56,13 +58,6 @@ export const MainView = (props: {
 			if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey)
 				return
 
-			if (e.key === 'Enter') {
-				e.preventDefault()
-				focusInputField()
-				clearInputField()
-				return
-			}
-
 			if ([e.key, e.code].includes(context.resetQueryKey)) {
 				e.preventDefault()
 				resetQuery()
@@ -73,20 +68,36 @@ export const MainView = (props: {
 				if (splitQueries.length > 1) {
 					if ([e.key, e.code].includes(context.appNavViewLeftKey)) {
 						e.preventDefault()
+						setThrobber(false)
 						setActiveQueryLeft()
 						return
 					}
 					if ([e.key, e.code].includes(context.appNavViewRightKey)) {
 						e.preventDefault()
+						setThrobber(false)
 						setActiveQueryRight()
 						return
 					}
 				}
 			}
 
-			if (inputElemRef && inputElemRef.current !== document.activeElement) {
-				if (!e.ctrlKey && !e.metaKey && !e.altKey && String.fromCharCode(e.keyCode).match(/(\w|\s)/g))
+			if (e.key === 'Enter') {
+				const el = document.activeElement
+				const isInputFocused = el === inputElemRef.current
+				const isTabbableFocused = el ? isTabbable(el) : false
+				if (isInputFocused || !isTabbableFocused) {
+					e.preventDefault()
 					focusInputField()
+					clearInputField()
+					return
+				}
+			}
+
+			if (inputElemRef && inputElemRef.current !== document.activeElement) {
+				if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.match(/^(\S)$/)) {
+					focusInputField()
+					return
+				}
 			}
 		}
 	}
@@ -104,6 +115,11 @@ export const MainView = (props: {
 	function onChangedQuery() {
 		if (query.length === 0)
 			return
+
+		if (query === 'wc') {
+			history.push('/wcalc')
+			return
+		}
 
 		setSplitQueries(splitQuery(query))
 
@@ -141,6 +157,7 @@ export const MainView = (props: {
 		onResetQueryDelegate.forEach(fn => fn?.())
 		setActiveQueryIndex(0)
 		setQuery(context.defaultQuery)
+		setThrobber(false)
 		setUseNumInput(false)
 		const queryParams = new URLSearchParams(location.search)
 		if (queryParams.has('sb')) {
@@ -206,10 +223,13 @@ export const MainView = (props: {
 		setActiveQueryIndex(lodash.clamp(activeQueryIndex + 1, 0, splitQueries.length - 1))
 	}
 
+	const showViewLeftButton = activeQueryIndex > 0
+	const showViewRightButton = activeQueryIndex < splitQueries.length - 1
+
 	return (
 		<div className={c('mainView__root mainView__mainLayout', props.className)}>
 			<div className="mainView__mainLayoutTop mainView__mainInputContainer">
-				<div className="mainView__queryNumInputToggleButton">
+				<div className="mainView__queryNumInputToggleButton" role="button">
 					<div className="mainView__queryNumInputToggleButtonText" onClick={onClickToggleKbButton}>
 						<ConditionalRenderer condition={useNumInput} children="⌨️" />
 						<ConditionalRenderer condition={!useNumInput} children="🔢" />
@@ -218,7 +238,7 @@ export const MainView = (props: {
 				<DelayedTextInput className={c('mainView__mainInput', { 'mainView__mainInput--numType': useNumInput })}
 					type={useNumInput ? 'number' : 'text'}
 					elemRef={inputElemRef}
-					placeholder={useNumInput ? "Enter UPC, PLU, or DPCI" : "Enter query"}
+					placeholder={useNumInput ? "Enter UPC or PLU" : "Enter query"}
 					committedValue={query}
 					onStartInput={() => setThrobber(true)}
 					onStopInput={() => setThrobber(false)}
@@ -226,7 +246,7 @@ export const MainView = (props: {
 					commitDelay={300}
 					disabled={!props.active}
 					passProps={{ spellCheck: false }} />
-				<div className="mainView__queryResetButton" onClick={onClickResetButton}>
+				<div className="mainView__queryResetButton" role="button" onClick={onClickResetButton}>
 					<span className="mainView__queryResetButtonText">↶</span>
 				</div>
 			</div>
@@ -242,14 +262,17 @@ export const MainView = (props: {
 
 				<div className="mainView__queryResultListViewContainer">
 					{splitQueries.map((q, i) => (
-						<MainViewQueryResults key={i} query={q}
-							className={c('mainView__queryResultListView', {
-								'active': i === activeQueryIndex,
-								'hideToLeft': i < activeQueryIndex,
-								'hideToRight': i > activeQueryIndex,
-							})}
-							onPickShadowBoxElem={onPickShadowBoxElem}
-							onResetQueryDelegate={onResetQueryDelegate} />
+						<Untabbable active={showShadowbox || i !== activeQueryIndex} key={i}>
+							<MainViewQueryResults query={q}
+								className={c('mainView__queryResultListView', {
+									'active': i === activeQueryIndex,
+									'hideToLeft': i < activeQueryIndex,
+									'hideToRight': i > activeQueryIndex,
+								})}
+								active={i === activeQueryIndex}
+								onPickShadowBoxElem={onPickShadowBoxElem}
+								onResetQueryDelegate={onResetQueryDelegate} />
+						</Untabbable>
 					))}
 				</div>
 
@@ -269,18 +292,20 @@ export const MainView = (props: {
 
 				<div className="mainView__viewNavContainer">
 					<div className="mainView__viewNavButtonLeftContainer">
-						<div className={c('mainView__viewNavButtonLeft', { 'active': activeQueryIndex > 0 })} onClick={setActiveQueryLeft}>
+						<button className={c('mainView__viewNavButtonLeft', { 'active': showViewLeftButton })} onClick={setActiveQueryLeft} tabIndex={-1}>
 							<span>‹</span>
-						</div>
+						</button>
 					</div>
 					<div className="mainView__viewNavButtonRightContainer">
-						<div className={c('mainView__viewNavButtonRight', { 'active': activeQueryIndex < splitQueries.length - 1 })} onClick={setActiveQueryRight}>
+						<button className={c('mainView__viewNavButtonRight', { 'active': showViewRightButton })} onClick={setActiveQueryRight} tabIndex={-1}>
 							<span>›</span>
-						</div>
+						</button>
 					</div>
 				</div>
 
-				<Shadowbox className="mainView__shadowbox" active={showShadowbox} item={shadowBoxElem} />
+				<Untabbable active={!showShadowbox}>
+					<Shadowbox className="mainView__shadowbox" active={showShadowbox} item={shadowBoxElem} />
+				</Untabbable>
 
 			</div>
 

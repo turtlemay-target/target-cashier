@@ -1,15 +1,20 @@
 import * as React from 'react'
 import * as QRCode from 'qrcode'
 import jsbarcode from 'jsbarcode'
+import { useTabIndex } from '../lib/tabindex'
+import { AppStateContext } from './AppStateProvider'
 
 const PLU_REGEX = /^\d{4,5}$/
 const UPC_REGEX = /^\d{11,12}$/
+const SKU_REGEX = /^\d{14}$/
 
 export function Barcode(props: {
 	className?: string
 	value: string
 	onClickBarcode?: VoidFunction
 }) {
+	const context = React.useContext(AppStateContext)
+	const tabIndex = useTabIndex(0)
 	const canvasElemRef = React.createRef<HTMLCanvasElement>()
 
 	const jsBarcodeOpts = {
@@ -22,37 +27,76 @@ export function Barcode(props: {
 		flat: true,
 	}
 
-	React.useEffect(() => {
+	React.useEffect(updateValue, [props.value])
+
+	function updateValue() {
 		if (canvasElemRef.current)
 			renderBarcode(canvasElemRef.current, props.value, jsBarcodeOpts)
-	})
-
-	return React.createElement('canvas', {
-		className: props.className,
-		ref: canvasElemRef,
-		onClick: props.onClickBarcode,
-		key: props.value,
-	})
-}
-
-function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
-	if (value.match(PLU_REGEX)) {
-		QRCode.toCanvas(elem, value, err => {
-			if (err) console.error(err)
-		})
-		return
 	}
 
-	if (value.match(UPC_REGEX)) {
-		try {
-			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
-			jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
-			return
-		} catch (err) {
-			console.error(err)
+	function handleKeyDown(e: React.KeyboardEvent<HTMLElement>) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault()
+			const el = e.target as HTMLElement
+			el?.click()
 		}
 	}
 
-	const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'CODE128' })
-	jsbarcode(elem, value, barcodeOpts)
+	return (
+		<div role="button" className={props.className}
+			key={props.value}
+			tabIndex={tabIndex}
+			onClick={props.onClickBarcode}
+			onKeyDown={handleKeyDown}
+		>
+			<canvas ref={canvasElemRef} />
+		</div>
+	)
+
+	function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
+		if (value.match(PLU_REGEX)) {
+			// Target supports QR codes.
+			if (context.dbInfo?.organization === 'TARGET') {
+				QRCode.toCanvas(elem, value, err => {
+					if (err) console.error(err)
+				})
+				return
+			}
+	
+			// Use UPC format for PLU codes.
+			try {
+				const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+				jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
+				return
+			} catch (err) {
+				console.error(err)
+			}
+		}
+	
+		if (value.match(UPC_REGEX)) {
+			try {
+				const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+				jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
+				return
+			} catch (err) {
+				console.error(err)
+			}
+		}
+	
+		// Take UPC from SKU format.
+		if (value.match(SKU_REGEX)) {
+			const upc = value.substring(2)
+			try {
+				const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+				jsbarcode(elem, upc, barcodeOpts)
+				return
+			} catch (err) {
+				console.error(err)
+			}
+		}
+
+		// Fallback to CODE 128
+		const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'CODE128' })
+		jsbarcode(elem, value, barcodeOpts)
+	}
 }

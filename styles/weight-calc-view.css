@@ -1,0 +1,53 @@
+.weightCalcView__root {
+	font: 1.2rem sans-serif;
+	padding: 1em;
+	background: black;
+	color: #999;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+}
+
+.weightCalcView__mainContainer {
+	min-width: 15rem;
+	max-width: 30rem;
+	margin: 0 auto;
+}
+
+.weightCalcView__headingText {
+	text-align: center;
+	font-size: 1.8rem;
+	color: white;
+}
+
+.weightCalcView__columnContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5em;
+}
+
+.weightCalcView__columnLeft {
+	flex: 1;
+	max-width: 50%;
+	text-align: right;
+	padding: 0 0.5em 0 0;
+}
+
+.weightCalcView__columnRight {
+	width: 6em;
+}
+
+.weightCalcView__numInput {
+	font: inherit;
+	font-family: monospace;
+}
+
+.weightCalcView__resultContainer {
+	text-align: center;
+	padding: 1em;
+}
+
+.weightCalcView__resultText {
+	color: white;
+	font-weight: bold;
+}

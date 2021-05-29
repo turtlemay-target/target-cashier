@@ -1,4 +1,4 @@
-import * as schemaJson from 'target-db-schema/schema.json'
+import * as schemaJson from 'turtlemay-cashier-db-schema/schema.json'
 import { Validator } from 'jsonschema'
 
 const LOCAL_STORE_DB_CACHE_KEY = 'item-database-cache'

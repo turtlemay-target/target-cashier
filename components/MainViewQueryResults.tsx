@@ -6,14 +6,17 @@ import { usePrevious } from '../lib/react'
 import { ConditionalRenderer } from './ConditionalRenderer'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { StoreItemCard, GeneratedItemCard } from './item-cards'
+import { useTabIndex } from '../lib/tabindex'
 
 export function MainViewQueryResults(props: {
 	className?: string
 	query: string
+	active: boolean
 	onPickShadowBoxElem: (jsx: JSX.Element) => void
 	onResetQueryDelegate: Set<VoidFunction>
 }) {
 	const context = React.useContext(AppStateContext)
+	const tabIndex = useTabIndex(0)
 	const [searchResults, setSearchResults] = React.useState<IItemData[]>(context.search(props.query))
 	const [numRenderResultItems, setNumRenderResultItems] = React.useState(context.itemsPerPage)
 	const [typedCode, setTypedCode] = React.useState('')
@@ -51,13 +54,20 @@ export function MainViewQueryResults(props: {
 
 		setNumRenderResultItems(context.itemsPerPage)
 
-		const matchedTagName = props.query.match(/tag:(\S*)/)?.[1]
+		const tagMatchRegex = new RegExp(`${context.itemTagPrefix}(\\S*)`)
+		const matchedTagName = props.query.match(tagMatchRegex)?.[1]
 		if (matchedTagName) {
 			setEnablePaging(false)
 			setSearchResults(context.compiledItemData.filter(v => v.tags?.includes(matchedTagName)))
 		} else {
 			setEnablePaging(true)
-			setSearchResults(context.search(props.query))
+			setSearchResults(context.search(ignoreModifier(props.query)))
+
+			function ignoreModifier(str: string) {
+				if (context.organicModifier)
+					return str.replace(new RegExp(context.organicModifier, 'g'), '')
+				return str
+			}
 		}
 
 		const matchedBarcodeValue = props.query.match(/\d{4,24}/)?.[0] || null
@@ -80,6 +90,8 @@ export function MainViewQueryResults(props: {
 			Object.assign(scrollToOptions, { behavior: 'smooth' })
 		scrollUpElemRef.current?.scrollTo(scrollToOptions)
 	}
+
+	const renderShowMoreButton = enablePaging && numRenderResultItems < searchResults.length
 
 	return (
 		<div className={c('mainView__queryResultList', props.className)}
@@ -107,13 +119,13 @@ export function MainViewQueryResults(props: {
 					return arr.map((v, i) => (
 						<CSSTransition classNames="mainView__resultItemTransition" key={`${v.value}.${v.name}.${i}`} timeout={250}>
 							<div className="mainView__queryResultNode">
-								<StoreItemCard data={v} onPick={props.onPickShadowBoxElem} />
+								<StoreItemCard data={v} onPick={props.onPickShadowBoxElem} query={props.query} />
 							</div>
 						</CSSTransition>
 					))
 				})}
-				<ConditionalRenderer condition={enablePaging && numRenderResultItems < searchResults.length}>
-					<div className="mainView__showMoreButton" onClick={showMore}>+</div>
+				<ConditionalRenderer condition={renderShowMoreButton}>
+					<button className="mainView__showMoreButton" onClick={showMore} tabIndex={tabIndex}>+</button>
 				</ConditionalRenderer>
 			</TransitionGroup>
 		</div>

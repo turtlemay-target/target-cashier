@@ -7,16 +7,19 @@ import { loadCacheDb, validateDb, saveCacheDb, getRemoteDb, clearCacheDb } from 
 const LOCAL_STORAGE_KEY = 'user-prefs'
 
 const DEFAULT_PREFS = {
-	dbUrl: 'https://db.target.turtlemay.us/',
+	dbUrl: 'https://db.gianteagle.turtlemay.us/',
 	userItems: '',
 	itemsPerPage: 4,
-	defaultQuery: 'banana',
+	itemTagPrefix: '#',
+	organicModifier: '!',
+	querySeparator: ';',
+	defaultQuery: '',
 	tokenizeSearch: false,
 	resetQueryKey: '`',
 	appNavBackKey: 'Escape',
 	appNavViewLeftKey: '[',
 	appNavViewRightKey: ']',
-	querySeparator: ';',
+	noCheat: false,
 }
 
 type IPrefs = typeof DEFAULT_PREFS
@@ -45,7 +48,7 @@ export class AppStateProvider extends React.Component<{}, IState> {
 		if (loadedCacheDb && validateDb(loadedCacheDb)) {
 			const validDb = loadedCacheDb as IItemDb
 			cachedDbState = {
-				dbInfo: { name: validDb.name, version: validDb.version },
+				dbInfo: { name: validDb.name, version: validDb.version, organization: validDb.organization },
 				remoteItemData: validDb.items,
 			}
 		}
@@ -149,7 +152,7 @@ export class AppStateProvider extends React.Component<{}, IState> {
 		const db = await getRemoteDb(this.state.dbUrl)
 		if (db) {
 			this.setState({
-				dbInfo: { name: db.name, version: db.version },
+				dbInfo: { name: db.name, version: db.version, organization: db.organization },
 				remoteItemData: db.items,
 			})
 			saveCacheDb(db)
