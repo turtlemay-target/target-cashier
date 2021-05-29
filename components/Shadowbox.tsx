@@ -22,7 +22,7 @@ export function Shadowbox(props: React.PropsWithChildren<{
 		function handleKeyDown(e: KeyboardEvent) {
 			if (!props.active)
 				return
-			if ([e.key, e.code].includes(context.appNavBackKey))
+			if (context.appNavBackKey && [e.key, e.code].includes(context.appNavBackKey))
 				handleClose()
 		}
 	})
