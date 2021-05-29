@@ -29,7 +29,7 @@ export const InfoView = () => (
 				</ul>
 			</section>
 			<section>
-				<p><span>Software version <strong>{packageJson.version}</strong>.</span></p>
+				<p>Software version <strong>{packageJson.version}</strong>. See source code <a href="https://github.com/turtlemay/turtlemay-cashier">here</a>.</p>
 				<p>We use the latest browser APIs so ensure your OS, browser and/or WebView is up to date. An Android device with peripheral keyboard is recommended.</p>
 				<p>Created and maintained by <a target="_blank" href="http://turtlemay.us">Turtlemay</a>.</p>
 			</section>
