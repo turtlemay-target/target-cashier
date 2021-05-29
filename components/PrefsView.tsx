@@ -124,6 +124,17 @@ export function PrefsView() {
 				</section>
 
 				<section>
+					<PrefsOption>{{
+						label: "🚫 No Cheat Mode", description: "Disable some barcodes to preserve company metrics.",
+						controlNode: <input
+							className="prefsView__optionCheckbox"
+							type="checkbox"
+							checked={context.noCheat}
+							onChange={e => context.provider.setState({ noCheat: e.target.checked })} />,
+					}}</PrefsOption>
+				</section>
+
+				<section>
 					<div className="prefsView__optionsListSectionInfo">
 						<h2>Key Bindings</h2>
 						<p>JavaScript event key names or keycodes. (No modifiers.)</p>

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Barcode } from './Barcode'
 import { AppStateContext } from './AppStateProvider'
+import c from 'classnames'
 
 export function StoreItemCard(props: {
 	query: string
@@ -18,10 +19,16 @@ export function StoreItemCard(props: {
 		value = '9' + value
 	}
 	
+	const disableBarcode = (
+		context.organizationID === 'GIANT_EAGLE' &&
+		context.noCheat &&
+		!props.data.alwaysShowBarcode &&
+		props.data.tags?.includes("produce"))
+
 	const jsx = (
 		<div className="itemCards__storeItemCard" data-name={name} data-color={props.data.uiColor}>
 			<div className="itemCards__storeItemName">{name}</div>
-			<Barcode className="itemCards__storeItemBarcode"
+			<Barcode className={c("itemCards__storeItemBarcode", { "itemCards__storeItemBarcode--disabled": disableBarcode })}
 				value={value}
 				onClickBarcode={() => props.onPick?.(jsx)} />
 			<div className="itemCards__storeItemId">{value}</div>
