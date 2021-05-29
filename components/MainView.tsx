@@ -168,7 +168,8 @@ export const MainView = (props: {
 	}
 
 	function splitQuery(str: string): string[] {
-		const arr = str.split(context.querySeparator)
+		const s = context.querySeparator
+		const arr = s ? str.split(s) : [str]
 		return arr.filter(v => v.length > 0)
 	}
 
