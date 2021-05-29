@@ -1,8 +1,8 @@
 {
-  "short_name": "Giant Eagle",
-  "name": "Giant Eagle Cashier",
+  "short_name": "Turtlemay Cashier",
+  "name": "Turtlemay Cashier",
   "default_locale": "en",
-  "description": "Tools for Giant Eagle cashiers",
+  "description": "Tools for cashiers",
   "author": "Turtlemay",
   "background_color": "#000000",
   "theme_color": "#CC0000",

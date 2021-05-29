@@ -1,6 +1,6 @@
-# Giant Eagle Cashier
+# Turtlemay Cashier
 
-[This app](http://app.gianteagle.turtlemay.us/) assists Giant Eagle cashiers in scanning produce, looking up item codes, and performing calculations.
+[This app](http://cashier.turtlemay.us/) assists cashiers in scanning produce, looking up item codes, and performing calculations.
 
 ## Screenshot
 

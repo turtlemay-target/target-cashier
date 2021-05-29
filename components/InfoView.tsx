@@ -6,7 +6,7 @@ export const InfoView = () => (
 	<div className="infoView__root">
 		<div className="infoView__mainContainer">
 			<section>
-				<p>This app assists Giant Eagle cashiers in scanning produce, looking up item codes, and performing calculations. See source code <a href="https://github.com/turtlemay-gianteagle/gianteagle-cashier">here</a>.</p>
+				<p>This app assists cashiers in scanning produce, looking up item codes, and performing calculations.</p>
 				<h2>✨ Features</h2>
 				<ul>
 					<li>Enter search text into the query box to display a list of items found in the database.</li>
