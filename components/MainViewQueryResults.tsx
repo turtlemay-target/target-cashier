@@ -54,19 +54,21 @@ export function MainViewQueryResults(props: {
 
 		setNumRenderResultItems(context.itemsPerPage)
 
-		const tagMatchRegex = new RegExp(`${context.itemTagPrefix}(\\S*)`)
-		const matchedTagName = props.query.match(tagMatchRegex)?.[1]
-		if (matchedTagName) {
-			setEnablePaging(false)
-			setSearchResults(context.compiledItemData.filter(v => v.tags?.includes(matchedTagName)))
-		} else {
-			setEnablePaging(true)
-			setSearchResults(context.search(ignoreModifier(props.query)))
+		if (context.itemTagPrefix) {
+			const tagMatchRegex = new RegExp(`${context.itemTagPrefix}(\\S*)`)
+			const matchedTagName = props.query.match(tagMatchRegex)?.[1]
+			if (matchedTagName) {
+				setEnablePaging(false)
+				setSearchResults(context.compiledItemData.filter(v => v.tags?.includes(matchedTagName)))
+			} else {
+				setEnablePaging(true)
+				setSearchResults(context.search(ignoreModifier(props.query)))
 
-			function ignoreModifier(str: string) {
-				if (context.organicModifier)
-					return str.replace(new RegExp(context.organicModifier, 'g'), '')
-				return str
+				function ignoreModifier(str: string) {
+					if (context.organicModifier)
+						return str.replace(new RegExp(context.organicModifier, 'g'), '')
+					return str
+				}
 			}
 		}
 

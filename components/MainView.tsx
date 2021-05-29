@@ -58,7 +58,7 @@ export const MainView = (props: {
 			if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey)
 				return
 
-			if ([e.key, e.code].includes(context.resetQueryKey)) {
+			if (context.resetQueryKey && [e.key, e.code].includes(context.resetQueryKey)) {
 				e.preventDefault()
 				resetQuery()
 				return
@@ -66,13 +66,13 @@ export const MainView = (props: {
 
 			if (!showShadowbox) {
 				if (splitQueries.length > 1) {
-					if ([e.key, e.code].includes(context.appNavViewLeftKey)) {
+					if (context.appNavViewLeftKey && [e.key, e.code].includes(context.appNavViewLeftKey)) {
 						e.preventDefault()
 						setThrobber(false)
 						setActiveQueryLeft()
 						return
 					}
-					if ([e.key, e.code].includes(context.appNavViewRightKey)) {
+					if (context.appNavViewRightKey && [e.key, e.code].includes(context.appNavViewRightKey)) {
 						e.preventDefault()
 						setThrobber(false)
 						setActiveQueryRight()
@@ -168,7 +168,8 @@ export const MainView = (props: {
 	}
 
 	function splitQuery(str: string): string[] {
-		const arr = str.split(context.querySeparator)
+		const s = context.querySeparator
+		const arr = s ? str.split(s) : [str]
 		return arr.filter(v => v.length > 0)
 	}
 
