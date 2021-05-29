@@ -19,17 +19,6 @@ export function PrefsView() {
 
 				<section>
 					<PrefsOption>{{
-						label: "🏢 Organization",
-						controlNode: <select className="prefsView__optionTextInput"
-								value={context.organizationID}
-								onChange={e => context.provider.setState({ organizationID: e.target.value })}>
-							<option value=""></option>
-							<option value="TARGET">Target</option>
-							<option value="GIANT_EAGLE">Giant Eagle</option>
-						</select>,
-					}}</PrefsOption>
-
-					<PrefsOption>{{
 						label: "🔗 Database URL", description: "Must match our JSON schema and serve over HTTPS. Defaults to Turtlemay's store database.",
 						controlNode: <DelayedTextInput
 							className="prefsView__optionTextInput"
@@ -44,7 +33,11 @@ export function PrefsView() {
 							} }} />,
 						stateInfo: Function.call.call(() => {
 							if (context.dbInfo)
-								return `Loaded remote database "${context.dbInfo.name}" ${context.dbInfo.version}.`
+								return <>
+									<div>Loaded remote database "{context.dbInfo.name}" {context.dbInfo.version}.</div>
+									{context.dbInfo.organization ?
+										<div>Organization: <code>{context.dbInfo.organization}</code></div> : null}
+								</>
 							return "No database found."
 						}),
 					}}</PrefsOption>

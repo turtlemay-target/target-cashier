@@ -1,7 +1,7 @@
 declare module 'jsbarcode'
 declare module 'fuse.js'
 
-type IItemDbInfo = Pick<IItemDb, 'name' | 'version'>
+type IItemDbInfo = Pick<IItemDb, 'name' | 'version' | 'organization'>
 
 interface IItemDb {
   name: string
