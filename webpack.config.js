@@ -60,6 +60,11 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			'process.env': {
+				'DEFAULT_DB_URL': JSON.stringify(process.env.CASHIER_APP_DEFAULT_DB_URL),
+			},
+		}),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: './resources/index.html',
