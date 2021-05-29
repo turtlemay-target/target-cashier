@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as QRCode from 'qrcode'
 import jsbarcode from 'jsbarcode'
 import { useTabIndex } from '../lib/tabindex'
+import { AppStateContext } from './AppStateProvider'
 
 const PLU_REGEX = /^\d{4,5}$/
 const UPC_REGEX = /^\d{11,12}$/
@@ -12,6 +13,7 @@ export function Barcode(props: {
 	value: string
 	onClickBarcode?: VoidFunction
 }) {
+	const context = React.useContext(AppStateContext)
 	const tabIndex = useTabIndex(0)
 	const canvasElemRef = React.createRef<HTMLCanvasElement>()
 
@@ -50,50 +52,51 @@ export function Barcode(props: {
 			<canvas ref={canvasElemRef} />
 		</div>
 	)
-}
 
-function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
-	if (value.match(PLU_REGEX)) {
-		// Don't use QR format because Giant Eagle does not support it for PLUs.
-		if (false) {
-			QRCode.toCanvas(elem, value, err => {
-				if (err) console.error(err)
-			})
-			return
+	function renderBarcode(elem: HTMLElement, value: string, jsBarcodeOpts = {}) {
+		if (value.match(PLU_REGEX)) {
+			// Target supports QR codes.
+			if (context.organizationID === 'TARGET') {
+				QRCode.toCanvas(elem, value, err => {
+					if (err) console.error(err)
+				})
+				return
+			}
+	
+			// Use UPC format for PLU codes.
+			try {
+				const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+				jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
+				return
+			} catch (err) {
+				console.error(err)
+			}
+		}
+	
+		if (value.match(UPC_REGEX)) {
+			try {
+				const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+				jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
+				return
+			} catch (err) {
+				console.error(err)
+			}
+		}
+	
+		// Take UPC from SKU format.
+		if (value.match(SKU_REGEX)) {
+			const upc = value.substring(2)
+			try {
+				const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
+				jsbarcode(elem, upc, barcodeOpts)
+				return
+			} catch (err) {
+				console.error(err)
+			}
 		}
 
-		// Use UPC format for PLU codes.
-		try {
-			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
-			jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
-			return
-		} catch (err) {
-			console.error(err)
-		}
+		// Fallback to CODE 128
+		const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'CODE128' })
+		jsbarcode(elem, value, barcodeOpts)
 	}
-
-	if (value.match(UPC_REGEX)) {
-		try {
-			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
-			jsbarcode(elem, value.padStart(11, '0'), barcodeOpts)
-			return
-		} catch (err) {
-			console.error(err)
-		}
-	}
-
-	// Take UPC from SKU format.
-	if (value.match(SKU_REGEX)) {
-		const upc = value.substring(2)
-		try {
-			const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'upc' })
-			jsbarcode(elem, upc, barcodeOpts)
-			return
-		} catch (err) {
-			console.error(err)
-		}
-	}
-
-	const barcodeOpts = Object.assign({}, jsBarcodeOpts, { format: 'CODE128' })
-	jsbarcode(elem, value, barcodeOpts)
 }
